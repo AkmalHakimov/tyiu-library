@@ -1,0 +1,45 @@
+
+
+.content {
+  height: 400px;
+  width: 100%;
+  color: #ffffff;
+  background-color: #364d79;
+  display: flex;
+  font-family: "open_sansregular";
+  align-items: center;
+  justify-content: center;
+
+
+    .container_box{
+        margin: 0 auto;
+        width: 1026px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .left{
+          font-size: 20px;
+          height: 200px;
+          font-size: 17.5px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+
+
+            h3{
+              margin-bottom: 50px;
+              width: 513px; 
+            }
+
+            
+        }
+
+        .right{
+          width: 100%;
+          display: flex;
+          justify-content: end;
+           
+        }
+    }
+}
