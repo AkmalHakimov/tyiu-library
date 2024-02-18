@@ -9,4 +9,5 @@ public interface BookService {
     HttpEntity<?> getBook();
 
     HttpEntity<?> getCategoryBook(Integer categoryId);
+
 }

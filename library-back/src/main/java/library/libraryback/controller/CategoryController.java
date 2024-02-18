@@ -21,12 +21,22 @@ public class CategoryController {
     }
 
     @GetMapping
-    public HttpEntity<?> getAllCategories(){
-        return categoryService.getCategories();
+    public HttpEntity<?> getAllCategories(@RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "") String search,@RequestParam(defaultValue = "6") Integer offset){
+        return categoryService.getCategories(page, search, offset);
     }
 
     @GetMapping("/{categoryId}/book")
     public HttpEntity<?> getCategoryBook(@PathVariable Integer categoryId){
         return bookService.getCategoryBook(categoryId);
+    }
+
+    @DeleteMapping("/{id}")
+    public HttpEntity<?> deleteItm(@PathVariable Integer id){
+        return categoryService.delItm(id);
+    }
+
+    @PutMapping("/{id}")
+    public HttpEntity<?> editItm(@RequestBody Category category,@PathVariable Integer id){
+        return categoryService.editCategory(category,id);
     }
 }

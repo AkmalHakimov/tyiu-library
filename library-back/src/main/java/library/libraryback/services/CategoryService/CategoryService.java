@@ -7,5 +7,9 @@ import org.springframework.http.HttpEntity;
 public interface CategoryService {
     HttpEntity<?> addCategory(Category category);
 
-    HttpEntity<?> getCategories();
+    HttpEntity<?> getCategories(Integer page, String search,Integer offset);
+
+    HttpEntity<?> delItm(Integer id);
+
+    HttpEntity<?> editCategory(Category category, Integer id);
 }

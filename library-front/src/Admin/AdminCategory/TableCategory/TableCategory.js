@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Button,Modal, Form, Input, Popconfirm, Table } from "antd";
+import { Button, Modal, Form, Input, Popconfirm, Table } from "antd";
 import "../TableCategory/TableCategory.css";
 import ApiRequest from "../../../utils/ApiRequest";
 const EditableContext = React.createContext(null);
@@ -80,26 +80,18 @@ const EditableCell = ({
   return <td {...restProps}>{childNode}</td>;
 };
 const TableCategory = () => {
-  const [dataSource, setDataSource] = useState([
-    {
-      key: "0",
-      name: "Edward King 0",
-      age: "32",
-      address: "London, Park Lane no. 0",
-    },
-    {
-      key: "1",
-      name: "Edward King 1",
-      age: "32",
-      address: "London, Park Lane no. 1",
-    },
-  ]);
-  const handleDelete = (key) => {
-    console.log("salom");
+  const [dataSource, setDataSource] = useState([]);
+  const [searchInp,setSearchInp] = useState("");
+  const handleDelete = (id) => {
+    ApiRequest(`/category/${id}`, "delete").then((res) => {
+      getCategories(page);
+    });
   };
 
-  function handleEdit(item){
-    showModal()
+  function handleEdit(item) {
+    showModal();
+    setCategoryInp(item.name);
+    setCurrentItm(item);
   }
   const defaultColumns = [
     {
@@ -113,29 +105,30 @@ const TableCategory = () => {
     },
     {
       title: "Delete",
-      dataIndex: "",
+      dataIndex: "delete",
       render: (_, record) =>
         dataSource.length >= 1 ? (
           <Popconfirm
             title="Sure to delete?"
-            onConfirm={() => handleDelete(record.key)}
+            onConfirm={() => handleDelete(record.id)}
           >
             <Button type="primary">Delete</Button>
           </Popconfirm>
         ) : null,
     },
     {
-        title: "Edite",
-        dataIndex: "",
-        render: (_, record) =>
-          dataSource.length >= 1 ? (
-              <Button onClick={()=>handleEdit(record)} type="primary">Edite</Button>
-          ) : null,
-      },
+      title: "Edite",
+      dataIndex: "",
+      render: (_, record) =>
+        dataSource.length >= 1 ? (
+          <Button onClick={() => handleEdit(record)} type="primary">
+            Edite
+          </Button>
+        ) : null,
+    },
   ];
   const handleAdd = () => {
-    showModal()
-    console.log("bu add");
+    showModal();
   };
   const columns = defaultColumns.map((col) => {
     if (!col.editable) {
@@ -153,43 +146,83 @@ const TableCategory = () => {
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [categoryInp, setCategoryInp] = useState("");
+  const [loading,setLoading] = useState(false);
+  const [currentItm, setCurrentItm] = useState("");
+  const [totalPages,setTotalPages] = useState("");
+  const [page,setPage] = useState(1)
   const showModal = () => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
+    if (currentItm) {
+      ApiRequest("/category/" + currentItm.id, "put", {
+        name: categoryInp,
+      }).then((res) => {
+        setCurrentItm("");
+        getCategories(page);
+      });
+    } else {
+      ApiRequest("/category", "post", {
+        name: categoryInp,
+      }).then((res) => {
+        getCategories(page);
+      });
+    }
+    setCategoryInp("");
     setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
-  useEffect(()=>{
-    getCategories();
-  },[])
+  useEffect(() => {
+    getCategories(page);
+  }, []);
 
-  function getCategories(){
-    ApiRequest("/category","get").then(res=>{
-        setDataSource(res.data)
-    })
+  function getCategories(page,search = searchInp) {
+    setLoading(true)
+    ApiRequest(`/category?page=${page}&search=`+ (search), "get").then((res) => {
+      setDataSource(res.data.content)
+      console.log(res.data.totalPages);
+      setTotalPages(res.data.totalElements)
+      setLoading(false)
+    });
   }
   return (
     <div>
-      <Button
-        onClick={handleAdd}
-        type="primary"
-        style={{
-          marginBottom: 16,
-        }}
+      <div className="d-flex justify-content-between align-items-center">
+        <Button
+          onClick={handleAdd}
+          type="primary"
+          style={{
+            marginBottom: 16,
+          }}
+        >
+          Add a row
+        </Button>
+        <div>
+          <Input value={searchInp} onChange={(e)=>{setSearchInp(e.target.value); getCategories(page,e.target.value)}} placeholder="search by name"></Input>
+        </div>
+      </div>
+      <Table pagination={{
+        pageSize:6,
+        total: totalPages,
+        onChange: (page)=>{
+          getCategories(page)
+        }
+      }} loading={loading} bordered dataSource={dataSource} columns={columns} />
+      <Modal
+        title="Yo'nalish"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
       >
-        Add a row
-      </Button>
-      <Table
-        bordered
-        dataSource={dataSource}
-        columns={columns}
-      />
-      <Modal title="Yo'nalish" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-            <Input placeholder="name"></Input>
+        <Input
+          value={categoryInp}
+          onChange={(e) => setCategoryInp(e.target.value)}
+          placeholder="name"
+        ></Input>
       </Modal>
     </div>
   );
