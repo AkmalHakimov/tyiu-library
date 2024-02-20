@@ -3,6 +3,8 @@ package library.libraryback.services.BookService;
 import library.libraryback.entity.Book;
 import library.libraryback.repository.BookRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,11 +14,6 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService{
 
     private final BookRepo bookRepo;
-
-    @Override
-    public HttpEntity<?> getCategoryBook(Integer categoryId) {
-        return ResponseEntity.ok(bookRepo.findBooksByCategoryId(categoryId));
-    }
 
     @Override
     public HttpEntity<?> saveBook(Book book) {
@@ -31,7 +28,8 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public HttpEntity<?> getBook() {
-        return ResponseEntity.ok(bookRepo.findAll());
+    public HttpEntity<?> getBook(Integer categoryId, Integer page, Integer offset,String search) {
+        Pageable pageable = PageRequest.of(page-1,offset);
+        return ResponseEntity.ok(bookRepo.getBooks(categoryId,pageable,search));
     }
 }

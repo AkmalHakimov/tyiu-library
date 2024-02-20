@@ -17,16 +17,14 @@ export default function Book() {
   }, []);
 
   function getBooks() {
-    ApiRequest(`/category/${params.id}/book`, "get").then((res) => {
+    ApiRequest(`/book?categoryId=${params.id}`, "get").then((res) => {
       setBooks(res.data);
     });
   }
 
   function getCategories() {
     ApiRequest(`/category`, "get").then((res) => {
-      let x = res.data;
-      let category = x.filter(item=>item.id==params.id)[0];
-      setBookCategory(category);
+      setBookCategory(res.data.content);
     });
   }
 

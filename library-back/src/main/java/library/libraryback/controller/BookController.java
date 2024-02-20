@@ -18,8 +18,8 @@ public class BookController {
         return bookService.saveBook(book);
     }
 
-    @GetMapping
-    public HttpEntity<?> getBook(){
-        return bookService.getBook();
+    @GetMapping()
+    public HttpEntity<?> getBook(@RequestParam(defaultValue = "0") Integer categoryId,@RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "6") Integer offset){
+        return bookService.getBook(categoryId,page,offset,search);
     }
 }

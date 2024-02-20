@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
 
     private final CategoryService categoryService;
-    private final BookService bookService;
 
     @PostMapping
     public HttpEntity<?> postCategory(@RequestBody Category category){
@@ -23,11 +22,6 @@ public class CategoryController {
     @GetMapping
     public HttpEntity<?> getAllCategories(@RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "") String search,@RequestParam(defaultValue = "6") Integer offset){
         return categoryService.getCategories(page, search, offset);
-    }
-
-    @GetMapping("/{categoryId}/book")
-    public HttpEntity<?> getCategoryBook(@PathVariable Integer categoryId){
-        return bookService.getCategoryBook(categoryId);
     }
 
     @DeleteMapping("/{id}")

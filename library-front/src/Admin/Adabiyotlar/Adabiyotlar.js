@@ -1,5 +1,6 @@
 import React from 'react'
 import { Breadcrumb,Layout, Menu, theme } from "antd";
+import TableAdabiyotlar from './TableAdabiyotlar/TableAdabiyotlar';
 
 
 export default function Adabiyotlar() {
@@ -11,12 +12,6 @@ const { Header, Content, Footer, Sider } = Layout;
       } = theme.useToken();
   return (
         <Layout>
-          <Header
-            style={{
-              padding: 0,
-              background: colorBgContainer,
-            }}
-          />
           <Content
             style={{
               margin: "0 16px",
@@ -27,8 +22,7 @@ const { Header, Content, Footer, Sider } = Layout;
                 margin: "16px 0",
               }}
             >
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            <h1>Adabiyotlar</h1>
             </Breadcrumb>
             <div
               style={{
@@ -38,7 +32,7 @@ const { Header, Content, Footer, Sider } = Layout;
                 borderRadius: borderRadiusLG,
               }}
             >
-                <h1>Salom</h1>
+               <TableAdabiyotlar/>
             </div>
           </Content>
           <Footer

@@ -6,8 +6,7 @@ import org.springframework.http.HttpEntity;
 public interface BookService {
     HttpEntity<?> saveBook(Book book);
 
-    HttpEntity<?> getBook();
+    HttpEntity<?> getBook(Integer categoryId, Integer page, Integer offset,String search);
 
-    HttpEntity<?> getCategoryBook(Integer categoryId);
 
 }

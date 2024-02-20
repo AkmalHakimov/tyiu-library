@@ -26,6 +26,7 @@ const { Header, Content, Footer, Sider } = Layout;
               <h1>Yo'nalishlar</h1>
             </Breadcrumb>
             <div
+            
               style={{
                 padding: 24,
                 minHeight: 360,

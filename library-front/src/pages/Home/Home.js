@@ -18,7 +18,7 @@ export default function Home() {
 
   function getCategories() {
     ApiRequest("/category", "get").then((res) => {
-      setCategories(res.data);
+      setCategories(res.data.content);
     });
   }
 

@@ -16,7 +16,7 @@ public interface BookProjection {
 
     String getDescription();
 
-    @Value("#{target.category.name}")
+//    @Value("#{target.category.name}")
     String getCategoryName();
 
     @Value("#{target.book_date}")
