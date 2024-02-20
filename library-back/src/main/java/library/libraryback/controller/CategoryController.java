@@ -33,4 +33,9 @@ public class CategoryController {
     public HttpEntity<?> editItm(@RequestBody Category category,@PathVariable Integer id){
         return categoryService.editCategory(category,id);
     }
+
+    @GetMapping("/all")
+    public HttpEntity<?> getAllCategories(){
+        return categoryService.getAllCategories();
+    }
 }

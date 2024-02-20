@@ -23,8 +23,8 @@ export default function Book() {
   }
 
   function getCategories() {
-    ApiRequest(`/category`, "get").then((res) => {
-      setBookCategory(res.data.content);
+    ApiRequest(`/category/all`, "get").then((res) => {
+      setBookCategory(res.data);
     });
   }
 

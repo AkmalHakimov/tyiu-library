@@ -12,4 +12,6 @@ public interface CategoryService {
     HttpEntity<?> delItm(Integer id);
 
     HttpEntity<?> editCategory(Category category, Integer id);
+
+    HttpEntity<?> getAllCategories();
 }

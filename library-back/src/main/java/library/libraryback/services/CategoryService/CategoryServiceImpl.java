@@ -31,6 +31,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public HttpEntity<?> getAllCategories() {
+        return ResponseEntity.ok(categoryRepo.findAll());
+    }
+
+    @Override
     public HttpEntity<?> delItm(Integer id) {
         categoryRepo.deleteById(id);
         return ResponseEntity.ok("");
