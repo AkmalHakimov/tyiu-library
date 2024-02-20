@@ -51,7 +51,6 @@ export default function TableAdabiyotlar() {
     }
   return (
     <div>
-      <h1>salom</h1>
         <Select
           defaultValue="a1"
           onChange={handleChange}
