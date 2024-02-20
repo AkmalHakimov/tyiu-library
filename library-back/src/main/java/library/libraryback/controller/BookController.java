@@ -20,6 +20,7 @@ public class BookController {
 
     @GetMapping()
     public HttpEntity<?> getBook(@RequestParam(defaultValue = "0") Integer categoryId,@RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "1") Integer page,@RequestParam(defaultValue = "6") Integer offset){
+        System.out.println("salom");
         return bookService.getBook(categoryId,page,offset,search);
     }
 }
