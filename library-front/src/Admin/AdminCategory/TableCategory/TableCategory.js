@@ -184,7 +184,6 @@ const TableCategory = () => {
     setLoading(true)
     ApiRequest(`/category?page=${page}&search=`+ (search), "get").then((res) => {
       setDataSource(res.data.content)
-      console.log(res.data.totalPages);
       setTotalPages(res.data.totalElements)
       setLoading(false)
     });

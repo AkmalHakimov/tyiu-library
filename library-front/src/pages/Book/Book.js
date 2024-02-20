@@ -18,7 +18,7 @@ export default function Book() {
 
   function getBooks() {
     ApiRequest(`/book?categoryId=${params.id}`, "get").then((res) => {
-      setBooks(res.data);
+      setBooks(res.data.content);
     });
   }
 

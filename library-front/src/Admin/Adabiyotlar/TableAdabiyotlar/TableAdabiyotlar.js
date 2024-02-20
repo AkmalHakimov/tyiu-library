@@ -1,14 +1,19 @@
 import React, {useEffect, useState} from 'react'
-import { Radio, Select, Space,Table } from 'antd';
+import { Radio, Select, Space,Table,Button, Input,Pagination } from 'antd';
 import ApiRequest from '../../../utils/ApiRequest';
 
 export default function TableAdabiyotlar() {
 
     const [data,setData] = useState([])
-    const options = [
-        {label: "12", value: "qalay"},
-        {label: "aaa", value: "a1"},
-    ]
+    const [totalPages,setTotalPages] = useState("");
+    const [loading,setLoading] = useState(false)
+    const [searchInp,setSearchInp] = useState("")
+    const [selectVal,setSelectVal] = useState(0)
+    const [page,setPage] = useState(1)
+
+    const [options,setOptions] = useState([
+      {label: "Yo'nalishlar", value: ""}
+    ])
 
     const columns =[
         {
@@ -37,29 +42,57 @@ export default function TableAdabiyotlar() {
     ]
 
     useEffect(()=>{
-        getBooks()
+        getBooks(page)  
+        getCategories()
     },[])
 
-    function getBooks(){
-        ApiRequest("/book","get").then(res=>{
+    function getCategories(){
+      ApiRequest("/category", "get").then(res=>{
+        res.data.content.map((item,index)=>{
+            options.push({
+              label: item.name,
+              value:item.id,
+              key: index  
+            })
+            setOptions([...options])
+        })
+      })
+    }
+    function getBooks(page,search = searchInp,select = selectVal){
+      setLoading(true)
+        ApiRequest(`/book?page=${page}&categoryId=${select}&search=` + (search),"get").then(res=>{
+            setTotalPages(res.data.totalElements)
             setData(res.data.content)
+            setLoading(false)
         })
     }
 
-    function handleChange(value){
-        console.log(value);
-    }
+    const onShowSizeChange = (current, pageSize) => {
+      console.log(current, pageSize);
+    };
   return (
     <div>
+        <div className='mb-4 d-flex align-items-center justify-content-between'>
+        <div style={{width:450}} className='d-flex align-items-center justify-content-between'>
+        <Button type='primary'>Add a row</Button>
         <Select
-          defaultValue="a1"
-          onChange={handleChange}
+          defaultValue="Yo'nalishlar"
+          onChange={(val)=>{setSelectVal(val); getBooks(page,searchInp,val)}}
           style={{
             width: 300,
           }}
           options={options}
         />
-        <Table columns={columns} dataSource={data}/>
+        </div>
+        <div><Input value={searchInp} onChange={(e)=>{setSearchInp(e.target.value); getBooks(page, e.target.value)}} placeholder='search...'/></div>
+        </div>
+        <Table pagination={{
+          pageSize: 6,
+          total:totalPages,
+          onChange: (page)=>{
+            getBooks(page)
+          },
+        }}   loading={loading} columns={columns} dataSource={data}/>
     </div>
   )
 }
