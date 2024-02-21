@@ -1,6 +1,7 @@
 package library.libraryback.controller;
 
 import library.libraryback.entity.Book;
+import library.libraryback.payload.requests.ReqBook;
 import library.libraryback.services.BookService.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -14,7 +15,7 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping
-    public HttpEntity<?> saveBook(@RequestBody Book book){
+    public HttpEntity<?> saveBook(@RequestBody ReqBook book){
         return bookService.saveBook(book);
     }
 
@@ -25,6 +26,16 @@ public class BookController {
             @RequestParam(defaultValue = "1") Integer page,
             @RequestParam(defaultValue = "6") Integer offset ){
         return bookService.getBook(categoryId,page,offset,search);
+    }
+
+    @DeleteMapping("/{bookId}")
+    public HttpEntity<?> delBook(@PathVariable Integer bookId ){
+       return bookService.delBook(bookId);
+    }
+
+    @PutMapping
+    public HttpEntity<?> editBook(@RequestBody ReqBook reqBook,@RequestParam(defaultValue = "") Integer bookId){
+        return bookService.editBook(reqBook,bookId);
     }
 
 

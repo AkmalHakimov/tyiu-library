@@ -5,6 +5,7 @@ import Book from "./pages/Book/Book";
 import HomeAdmin from "./Admin/HomeAdmin/HomeAdmin";
 import Adabiyotlar from "./Admin/Adabiyotlar/Adabiyotlar";
 import AdminCategory from "./Admin/AdminCategory/AdminCategory";
+import AddAdabiyotlar from "./Admin/Adabiyotlar/AddAdabiyotlar/AddAdabiyotlar";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
             path="yo'nalishlar"
             element={<AdminCategory></AdminCategory>}
           ></Route>
+          {/* <Route
+            path="adabiyotlar/add"
+            element={<AddAdabiyotlar></AddAdabiyotlar>}
+          ></Route> */}
         </Route>
         <Route path="/book/:id" element={<Book></Book>}></Route>
       </Routes>

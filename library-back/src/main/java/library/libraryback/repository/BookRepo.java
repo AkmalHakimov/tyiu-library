@@ -16,6 +16,6 @@ public interface BookRepo extends JpaRepository<Book,Integer> {
             "FROM books b join public.category c on c.id = b.category_id\n" +
             "WHERE\n" +
             "    ((:categoryId = 0)\n" +
-            "   OR (category_id = :categoryId)) and (lower(concat(author, ' ', b.name)) like lower(concat('%',:search,'%'))) order by id;\n",nativeQuery = true)
+            "   OR (category_id = :categoryId)) and (lower(concat(author, ' ', b.name)) like lower(concat('%',:search,'%'))) order by id desc;\n",nativeQuery = true)
     Page<BookProjection> getBooks(Integer categoryId, Pageable pageable,String search);
 }

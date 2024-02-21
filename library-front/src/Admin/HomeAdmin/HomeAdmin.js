@@ -104,6 +104,11 @@ const HomeAdmin = () => {
                     key: "/admin/yo'nalishlar",
                     icon: <PiBookOpen />,
                   },
+                  {
+                    label: "Adabiyot qo'shish",
+                    key: "/admin/adabiyotlar/add",
+                    icon: <PiBookOpen />,
+                  },
                 ],
               },
             ]}
