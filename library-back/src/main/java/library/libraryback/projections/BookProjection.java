@@ -18,6 +18,7 @@ public interface BookProjection {
 
 //    @Value("#{target.category.name}")
     String getCategoryName();
+    String getCategoryId();
 
     @Value("#{target.book_date}")
     Timestamp getBookDate();

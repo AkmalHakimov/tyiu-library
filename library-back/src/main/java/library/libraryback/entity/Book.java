@@ -36,4 +36,6 @@ public class Book {
     private BookType bookType;
     @ManyToOne
     private BookStatus bookStatus;
+    @OneToOne
+    private Attachment pdfId;
 }

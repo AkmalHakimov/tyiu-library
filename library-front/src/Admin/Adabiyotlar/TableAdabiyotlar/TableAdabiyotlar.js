@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import { Form,DatePicker, Select,Table,Button, Input,Modal } from 'antd';
+import { Form,DatePicker, Select,Table,Button, Input,Modal,message,Upload } from 'antd';
 import ApiRequest from '../../../utils/ApiRequest';
-
+import { UploadOutlined } from '@ant-design/icons';
+import dayjs from 'dayjs'
 export default function TableAdabiyotlar() {
 
     const [data,setData] = useState([])
@@ -12,7 +13,9 @@ export default function TableAdabiyotlar() {
     const [page,setPage] = useState(1)
     const [modalVisible,setModalVisible] = useState(false)
     const [currentItm,setCurrentItm] = useState("")
+    const [categories,setCategories] = useState([])
   const [form] = Form.useForm();
+  const { Dragger } = Upload;
 
 
     const [options,setOptions] = useState([
@@ -57,6 +60,7 @@ export default function TableAdabiyotlar() {
           }
     ]
 
+
     useEffect(()=>{
         getBooks(page)  
         getCategories()
@@ -69,19 +73,22 @@ export default function TableAdabiyotlar() {
     }
 
     function editItm(item){
-      console.log(item);
-       setModalVisible(true)
-       form.setFieldValue("name",item.name)
-       form.setFieldValue("publisher",item.publisher)
-       form.setFieldValue("author",item.author)
-       form.setFieldValue("bookDate",item.bookDate)
-       form.setFieldValue("description",item.description)
-       form.setFieldValue("categoryId",item.categoryId)
-       setCurrentItm(item)
+      setModalVisible(true)
+      form.setFieldValue("categoryId",{
+        label: item.categoryName,
+        value: item.categoryId
+      })
+      form.setFieldValue("name",item.name)
+      form.setFieldValue("author",item.author)
+      form.setFieldValue("publisher",item.publisher)
+      form.setFieldValue("bookDate",dayjs(item.bookdate))
+      form.setFieldValue("description",item.description)
+      setCurrentItm(item)
     }
 
     function getCategories(){
       ApiRequest("/category/all", "get").then(res=>{
+        setCategories(res.data);
         res.data.map((item,index)=>{
             options.push({
               label: item.name,
@@ -105,14 +112,53 @@ export default function TableAdabiyotlar() {
       setModalVisible(true)
     }
   function onFinish(value){
-    console.log(value);
-      console.log(value);
+    if(currentItm){
+      let obj = {
+        name: value.name,
+        author: value.author,
+        description: value.description,
+        publisher: value.publisher,
+        bookDate: value.bookDate,
+        categoryId: value.categoryId.value? value.categoryId.value : value.categoryId
+      }
+      ApiRequest(`/book?bookId=${currentItm.id}`,"put",obj).then(res=>{
+        getBooks(page)
+        setCurrentItm("")
+    })
+    }else {
       ApiRequest("/book","post",value).then(res=>{
-          getBooks(page)
-      })
+        getBooks(page)
+    })
+    }
       setModalVisible(false)
       form.resetFields()
   }
+  
+  function handlePhoto(info){
+    message.success(`${info.file.name} file uploaded successfully`);
+    let formData = new FormData
+    formData.append("file",info.file.originFileObj)
+    formData.append("prefix","/kitoblar/pdfs")
+    ApiRequest("/file", "post",formData).then(res=>{
+      console.log(res.data);
+    })
+  }
+
+  // const props = {
+  //   name: 'file',
+  //   action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
+  //   headers: {
+  //     authorization: 'authorization-text',
+  //   },
+  //   onChange(info) {
+  //     if (info.file.status === 'done') {
+      
+  //     } else if (info.file.status === 'error') {
+  //       console.log(info.file);
+  //       message.error(`${info.file.name} file upload failed.`);
+  //     }
+  //   },
+  // };
 
   return (
     <div>
@@ -193,7 +239,11 @@ export default function TableAdabiyotlar() {
       }}
       />
       </Form.Item>
-
+      <Form.Item label="Upload File" name="attachmentId">
+      <Upload onChange={handlePhoto} action={"https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"} maxCount={1}>
+    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+  </Upload>
+      </Form.Item>
       <Form.Item label="Izoh" name="description">
         <Input.TextArea/>
       </Form.Item>
