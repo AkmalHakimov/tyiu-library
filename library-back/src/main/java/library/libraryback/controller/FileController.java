@@ -24,7 +24,7 @@ public class FileController {
     }
 
     @GetMapping
-    public HttpEntity<?> getFile(@RequestParam UUID id, HttpServletResponse response){
+    public HttpEntity<?> getFile(@RequestParam UUID id, HttpServletResponse response) throws IOException {
         return fileService.getFile(id, response);
     }
 

@@ -16,7 +16,6 @@ import java.util.UUID;
 @Builder
 public class Attachment {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String prefix;
     private String name;

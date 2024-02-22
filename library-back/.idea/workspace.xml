@@ -5,23 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42e288af-eac9-4510-a973-93bcc512f393" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Attachment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/FileRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/information_schema.FNRwLQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Attachment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/payload/requests/ReqBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/payload/requests/ReqBook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/projections/BookProjection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/projections/BookProjection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/projections/BookProjection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/projections/BookProjection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/repository/BookRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/repository/BookRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/Admin/Adabiyotlar/TableAdabiyotlar/TableAdabiyotlar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/Admin/Adabiyotlar/TableAdabiyotlar/TableAdabiyotlar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/BookService/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/BookService/BookServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

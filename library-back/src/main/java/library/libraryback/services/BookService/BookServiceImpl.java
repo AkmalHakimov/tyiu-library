@@ -1,9 +1,11 @@
 package library.libraryback.services.BookService;
 
+import library.libraryback.entity.Attachment;
 import library.libraryback.entity.Book;
 import library.libraryback.payload.requests.ReqBook;
 import library.libraryback.repository.BookRepo;
 import library.libraryback.repository.CategoryRepo;
+import library.libraryback.repository.FileRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,15 +13,19 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
     private final BookRepo bookRepo;
     private final CategoryRepo categoryRepo;
+    private final FileRepo fileRepo;
 
     @Override
     public HttpEntity<?> saveBook(ReqBook book) {
+        Attachment attachment = fileRepo.findById(UUID.fromString(book.getPdfId())).orElseThrow();
         Book savedBook = Book.builder()
                 .name(book.getName())
                 .book_date(book.getBookDate())
@@ -27,14 +33,15 @@ public class BookServiceImpl implements BookService{
                 .author(book.getAuthor())
                 .description(book.getDescription())
                 .publisher(book.getPublisher())
+                .pdfAtt(attachment)
                 .build();
         return ResponseEntity.ok(bookRepo.save(savedBook));
     }
 
     @Override
-    public HttpEntity<?> getBook(Integer categoryId, Integer page, Integer offset,String search) {
-        Pageable pageable = PageRequest.of(page-1,offset);
-        return ResponseEntity.ok(bookRepo.getBooks(categoryId,pageable,search));
+    public HttpEntity<?> getBook(Integer categoryId, Integer page, Integer offset, String search) {
+        Pageable pageable = PageRequest.of(page - 1, offset);
+        return ResponseEntity.ok(bookRepo.getBooks(categoryId, pageable, search));
     }
 
     @Override
@@ -45,6 +52,7 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public HttpEntity<?> editBook(ReqBook reqBook, Integer bookId) {
+        Attachment attachment = fileRepo.findById(UUID.fromString(reqBook.getPdfId())).orElseThrow();
         Book save = bookRepo.save(Book.builder()
                 .id(bookId)
                 .book_date(reqBook.getBookDate())
@@ -53,6 +61,7 @@ public class BookServiceImpl implements BookService{
                 .publisher(reqBook.getPublisher())
                 .description(reqBook.getDescription())
                 .name(reqBook.getName())
+                .pdfAtt(attachment)
                 .build());
         return ResponseEntity.ok(save);
     }

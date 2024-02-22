@@ -37,5 +37,5 @@ public class Book {
     @ManyToOne
     private BookStatus bookStatus;
     @OneToOne
-    private Attachment pdfId;
+    private Attachment pdfAtt;
 }
