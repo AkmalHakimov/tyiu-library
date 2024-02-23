@@ -4,16 +4,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import library.libraryback.entity.Attachment;
 import library.libraryback.repository.FileRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
@@ -31,6 +36,15 @@ public class FileServiceImpl implements FileService{
                 .build());
         FileCopyUtils.copy(file.getInputStream(),new FileOutputStream("Files" +prefix + "/" + uuid + ":" + file.getOriginalFilename()));
             return ResponseEntity.ok(uuid);
+    }
+
+    @Override
+    public HttpEntity<?> downloadFile(UUID id) throws MalformedURLException, UnsupportedEncodingException {
+        Attachment attachment = fileRepo.findById(id).orElseThrow();
+        Path filePath = Paths.get("files" + attachment.getPrefix() + "/" + attachment.getId(),id.toString());
+        Resource resource = new UrlResource((filePath.toUri()));
+        String encodedFilename = URLEncoder.encode(attachment.getName(), StandardCharsets.UTF_8.toString());
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + encodedFilename + "\"").body(resource);
     }
 
     @Override

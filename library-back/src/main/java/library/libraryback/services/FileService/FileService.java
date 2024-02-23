@@ -6,10 +6,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.UUID;
 
 public interface FileService {
     HttpEntity<?> uploadFile(MultipartFile file, String prefix) throws IOException;
 
     HttpEntity<?> getFile(UUID id, HttpServletResponse response) throws IOException;
+
+    HttpEntity<?> downloadFile(UUID id) throws MalformedURLException, UnsupportedEncodingException;
 }

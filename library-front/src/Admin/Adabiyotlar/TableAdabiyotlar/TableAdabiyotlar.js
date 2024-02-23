@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";  
 import {
   Form,
   DatePicker,
@@ -81,7 +82,7 @@ export default function TableAdabiyotlar() {
       title: "View",
       dataIndex: "",
       render: (item) => (
-        <Button type="primary" onClick={() => viewFile(item)}>
+        <Button type="primary" onClick={() => downloadFile(item)}>
           View
         </Button>
       ),
@@ -180,33 +181,34 @@ export default function TableAdabiyotlar() {
   }
 
   function viewFile(item) {
-    ApiRequest(`/file?id=${item.pdfId}`, "get")
-      .then(response => {
-        const blobRes = new Blob([response.data]);
-        const blobURL = URL.createObjectURL(blobRes);
-        window.open(blobURL, '_blank');
-      })
-      .catch(error => {
-        console.error('Error fetching or opening the PDF:', error);
-      });
+    const newTab = window.open(`http://localhost:8080/api/file?id=${item.pdfId}`, '_blank');
+    if (newTab) {
+      newTab.focus();
+    }
   }
-  
 
-  // const props = {
-  //   name: 'file',
-  //   action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-  //   headers: {
-  //     authorization: 'authorization-text',
-  //   },
-  //   onChange(info) {
-  //     if (info.file.status === 'done') {
+  function downloadFile(item){
+    const downloadUrl = `http://localhost:8080/api/file?id=${item.pdfId}`;
 
-  //     } else if (info.file.status === 'error') {
-  //       console.log(info.file);
-  //       message.error(`${info.file.name} file upload failed.`);
-  //     }
-  //   },
-  // };
+    try {
+      const response = axios.get(downloadUrl, {
+        responseType: 'blob', // Set the response type to blob
+      });
+
+      // Create a temporary link to trigger the download
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'downloadedFile.pdf'; // Provide a default filename
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      // Handle error, e.g., show an error message to the user
+    }
+  }
 
   return (
     <div>
