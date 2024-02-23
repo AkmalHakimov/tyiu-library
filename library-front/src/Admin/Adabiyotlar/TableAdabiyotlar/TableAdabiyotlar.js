@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";  
 import {
   Form,
   DatePicker,
@@ -16,6 +17,8 @@ import ApiRequest from "../../../utils/ApiRequest";
 import { UploadOutlined } from "@ant-design/icons";
 import { FileOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
+import DownloadFile from "../../../utils/DownloadFile/DownloadFile";
+import ViewFile from "../../../utils/ViewFile/ViewFile";
 export default function TableAdabiyotlar() {
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState("");
@@ -81,7 +84,7 @@ export default function TableAdabiyotlar() {
       title: "View",
       dataIndex: "",
       render: (item) => (
-        <Button type="primary" onClick={() => viewFile(item)}>
+        <Button type="primary" onClick={() => ViewFile(item)}>
           View
         </Button>
       ),
@@ -179,34 +182,8 @@ export default function TableAdabiyotlar() {
     });
   }
 
-  function viewFile(item) {
-    ApiRequest(`/file?id=${item.pdfId}`, "get")
-      .then(response => {
-        const blobRes = new Blob([response.data]);
-        const blobURL = URL.createObjectURL(blobRes);
-        window.open(blobURL, '_blank');
-      })
-      .catch(error => {
-        console.error('Error fetching or opening the PDF:', error);
-      });
-  }
-  
 
-  // const props = {
-  //   name: 'file',
-  //   action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
-  //   headers: {
-  //     authorization: 'authorization-text',
-  //   },
-  //   onChange(info) {
-  //     if (info.file.status === 'done') {
 
-  //     } else if (info.file.status === 'error') {
-  //       console.log(info.file);
-  //       message.error(`${info.file.name} file upload failed.`);
-  //     }
-  //   },
-  // };
 
   return (
     <div>

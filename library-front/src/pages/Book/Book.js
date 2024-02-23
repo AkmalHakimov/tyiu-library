@@ -5,6 +5,7 @@ import Fouter from "../../layouts/Fouter/Fouter";
 import qrcode_img from "../../assets/images/qrcode.png";
 import ApiRequest from "../../utils/ApiRequest";
 import { useParams } from "react-router-dom";
+import ViewFile from "../../utils/ViewFile/ViewFile";
 
 export default function Book() {
   const [books, setBooks] = useState([]);
@@ -50,7 +51,7 @@ export default function Book() {
                     <b>{item.author}-{item.name}</b>
                   </p>
                   <p><span className="text-primary">Kitob toifasi: </span>  {bookCategory?.name}</p>
-                  <button className="button">Yuklab Olish</button>
+                  <button onClick={()=>ViewFile(item)} className="button">Yuklab Olish</button>
                 </div>
               );
             })}

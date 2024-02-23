@@ -4,16 +4,21 @@ import jakarta.servlet.http.HttpServletResponse;
 import library.libraryback.entity.Attachment;
 import library.libraryback.repository.FileRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
 @Service
@@ -26,11 +31,19 @@ public class FileServiceImpl implements FileService{
         UUID uuid = UUID.randomUUID();
         fileRepo.save(Attachment.builder()
                         .id(uuid)
-                        .name(uuid + ":" + file.getOriginalFilename())
+                        .name(uuid + "_" + file.getOriginalFilename())
                         .prefix(prefix)
                 .build());
-        FileCopyUtils.copy(file.getInputStream(),new FileOutputStream("Files" +prefix + "/" + uuid + ":" + file.getOriginalFilename()));
+        FileCopyUtils.copy(file.getInputStream(),new FileOutputStream("Files" +prefix + "/" + uuid + "_" + file.getOriginalFilename()));
             return ResponseEntity.ok(uuid);
+    }
+
+    @Override
+    public HttpEntity<?> downloadFile(UUID id) throws MalformedURLException, UnsupportedEncodingException {
+        Attachment attachment = fileRepo.findById(id).orElseThrow();
+        Path filePath = Paths.get("Files" + attachment.getPrefix() + "/",attachment.getName());
+        Resource resource = new UrlResource((filePath.toUri()));
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + attachment.getName() + "\"").body(resource);
     }
 
     @Override

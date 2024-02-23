@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.UUID;
 
 @RestController
@@ -26,6 +28,11 @@ public class FileController {
     @GetMapping
     public HttpEntity<?> getFile(@RequestParam UUID id, HttpServletResponse response) throws IOException {
         return fileService.getFile(id, response);
+    }
+
+    @GetMapping("/download")
+    public HttpEntity<?> downloadFile(@RequestParam(defaultValue = "") UUID id) throws MalformedURLException, UnsupportedEncodingException {
+        return  fileService.downloadFile(id);
     }
 
 }
