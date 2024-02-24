@@ -5,20 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42e288af-eac9-4510-a973-93bcc512f393" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/QrCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/QrCodeRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Files/kitoblar/pdfs/22dd9a65-8075-4fbb-bfd2-ce95aa43ef9f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Files/kitoblar/pdfs/4599adc2-5da0-407e-a7e1-c848f633484f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Files/kitoblar/pdfs/fedf1fa5-aee9-470c-ade1-c14121bad732" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/Admin/Adabiyotlar/TableAdabiyotlar/TableAdabiyotlar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/Admin/Adabiyotlar/TableAdabiyotlar/TableAdabiyotlar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/pages/Book/Book.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/pages/Book/Book.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,25 +55,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.LibraryBackApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.LibraryBackApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="LibraryBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="library-back" />
@@ -113,6 +106,7 @@
       <workItem from="1708570938995" duration="11801000" />
       <workItem from="1708668263012" duration="3369000" />
       <workItem from="1708709152921" duration="100000" />
+      <workItem from="1708744572384" duration="4268000" />
     </task>
     <servers />
   </component>
