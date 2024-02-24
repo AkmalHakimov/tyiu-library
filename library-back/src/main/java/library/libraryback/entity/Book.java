@@ -38,4 +38,6 @@ public class Book {
     private BookStatus bookStatus;
     @OneToOne
     private Attachment pdfAtt;
+    @OneToOne
+    private QrCode qrCode;
 }

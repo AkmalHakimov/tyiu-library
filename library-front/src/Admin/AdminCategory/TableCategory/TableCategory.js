@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button, Modal, Form, Input, Popconfirm, Table } from "antd";
-import "../TableCategory/TableCategory.css";
+import "../TableCategory/TableCategory.scss";
 import ApiRequest from "../../../utils/ApiRequest";
 const EditableContext = React.createContext(null);
 const EditableRow = ({ index, ...props }) => {

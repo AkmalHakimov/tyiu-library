@@ -18,8 +18,9 @@ import java.util.UUID;
 public class QrCode {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String content;
+
+    private String name;
 }

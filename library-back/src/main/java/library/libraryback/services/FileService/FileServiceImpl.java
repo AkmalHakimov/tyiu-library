@@ -41,7 +41,7 @@ public class FileServiceImpl implements FileService{
     @Override
     public HttpEntity<?> downloadFile(UUID id) throws MalformedURLException, UnsupportedEncodingException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
-        Path filePath = Paths.get("Files" + attachment.getPrefix() + "/",attachment.getName());
+        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
         Resource resource = new UrlResource((filePath.toUri()));
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + attachment.getName() + "\"").body(resource);
     }

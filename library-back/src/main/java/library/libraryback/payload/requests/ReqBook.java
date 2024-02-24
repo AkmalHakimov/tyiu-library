@@ -15,6 +15,7 @@ public class ReqBook {
     private String author;
     private Integer categoryId;
     private String description;
+    private String qrCodeId;
     private String publisher;
     private Timestamp bookDate;
     private String pdfId;

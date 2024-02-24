@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";  
+import axios from "axios";
 import {
   Form,
   DatePicker,
@@ -12,13 +12,14 @@ import {
   message,
   Upload,
   Typography,
+  Popconfirm
 } from "antd";
 import ApiRequest from "../../../utils/ApiRequest";
 import { UploadOutlined } from "@ant-design/icons";
 import { FileOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import DownloadFile from "../../../utils/DownloadFile/DownloadFile";
 import ViewFile from "../../../utils/ViewFile/ViewFile";
+import DownloadExcel from "../../../utils/DownloadExcel/DownloadExcel";
 export default function TableAdabiyotlar() {
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState("");
@@ -63,11 +64,19 @@ export default function TableAdabiyotlar() {
     {
       title: "Delete",
       dataIndex: "",
-      render: (item) => (
-        <Button type="primary" onClick={() => delItem(item.id)}>
+      render: (item) =>
+      data.length >=1 ? 
+      (
+        <Popconfirm
+            title="Sure to delete?"
+            onConfirm={() => delItem(item.id)}
+          >
+              <Button type="primary">
           Delete
         </Button>
-      ),
+          </Popconfirm>
+       
+      ): null,
       with: "30%",
     },
     {
@@ -104,6 +113,7 @@ export default function TableAdabiyotlar() {
   }
 
   function editItm(item) {
+    console.log(item);
     setModalVisible(true);
     form.setFieldValue("categoryId", {
       label: item.categoryName,
@@ -114,6 +124,7 @@ export default function TableAdabiyotlar() {
     form.setFieldValue("publisher", item.publisher);
     form.setFieldValue("bookDate", dayjs(item.bookdate));
     form.setFieldValue("description", item.description);
+    form.setFieldValue("qrCodeId",item.qrCodeId); 
     setCurrentItm(item);
   }
 
@@ -151,7 +162,8 @@ export default function TableAdabiyotlar() {
       description: value.description,
       publisher: value.publisher,
       bookDate: value.bookDate,
-      pdfId: hasFile,
+      qrCodeId: value.qrCodeId,
+      pdfId: hasFile?hasFile: currentItm.pdfId,
       categoryId: value.categoryId.value
         ? value.categoryId.value
         : value.categoryId,
@@ -183,8 +195,6 @@ export default function TableAdabiyotlar() {
   }
 
 
-
-
   return (
     <div>
       <div className="mb-4 d-flex align-items-center justify-content-between">
@@ -207,7 +217,8 @@ export default function TableAdabiyotlar() {
             options={options}
           />
         </div>
-        <div>
+        <div className="d-flex gap-3">
+          <Button onClick={DownloadExcel} type="primary">Download Excel</Button>
           <Input
             value={searchInp}
             onChange={(e) => {

@@ -21,6 +21,7 @@ public interface BookProjection {
     String getCategoryName();
     String getCategoryId();
     String getPdfId();
+    String getQrCodeId();
     @Value("#{target.book_date}")
     Timestamp getBookDate();
 }

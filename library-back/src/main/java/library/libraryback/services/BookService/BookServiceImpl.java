@@ -1,11 +1,16 @@
 package library.libraryback.services.BookService;
 
+import com.google.zxing.WriterException;
 import library.libraryback.entity.Attachment;
 import library.libraryback.entity.Book;
+import library.libraryback.entity.QrCode;
 import library.libraryback.payload.requests.ReqBook;
 import library.libraryback.repository.BookRepo;
 import library.libraryback.repository.CategoryRepo;
 import library.libraryback.repository.FileRepo;
+import library.libraryback.repository.QrCodeRepo;
+import library.libraryback.services.QrCodeService.QrCodeService;
+import library.libraryback.services.QrCodeService.QrCodeServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +18,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -22,11 +28,14 @@ public class BookServiceImpl implements BookService {
     private final BookRepo bookRepo;
     private final CategoryRepo categoryRepo;
     private final FileRepo fileRepo;
+    private final QrCodeService qrCodeService;
+    private final QrCodeRepo qrCodeRepo;
 
     @Override
-    public HttpEntity<?> saveBook(ReqBook book) {
+    public HttpEntity<?> saveBook(ReqBook book) throws IOException, WriterException {
+        UUID qrCodeId = qrCodeService.generateQrCode(UUID.fromString(book.getPdfId()));
         Attachment attachment = fileRepo.findById(UUID.fromString(book.getPdfId())).orElseThrow();
-        Book savedBook = Book.builder()
+        bookRepo.save(Book.builder()
                 .name(book.getName())
                 .book_date(book.getBookDate())
                 .category(categoryRepo.findById(book.getCategoryId()).orElseThrow())
@@ -34,8 +43,24 @@ public class BookServiceImpl implements BookService {
                 .description(book.getDescription())
                 .publisher(book.getPublisher())
                 .pdfAtt(attachment)
-                .build();
-        return ResponseEntity.ok(bookRepo.save(savedBook));
+                .qrCode(qrCodeRepo.findById(qrCodeId).orElseThrow())
+                .build());
+//        bookRepo.save(Book.builder()
+//                        .id(dbBook.getId())
+//                        .qrCode(qrCodeRepo.findById(qrCodeId).orElseThrow())
+//                        .name(dbBook.getName())
+//                        .book_date(dbBook.getBook_date())
+//                        .bookBolim(dbBook.getBookBolim())
+//                        .bookStatus(dbBook.getBookStatus())
+//                        .bookType(dbBook.getBookType())
+//                        .kafedra(dbBook.getKafedra())
+//                        .pdfAtt(dbBook.getPdfAtt())
+//                        .publisher(dbBook.getPublisher())
+//                        .description(dbBook.getDescription())
+//                        .author(dbBook.getAuthor())
+//                        .category(dbBook.getCategory())
+//                .build());
+        return ResponseEntity.ok("");
     }
 
     @Override
@@ -53,6 +78,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public HttpEntity<?> editBook(ReqBook reqBook, Integer bookId) {
         Attachment attachment = fileRepo.findById(UUID.fromString(reqBook.getPdfId())).orElseThrow();
+        Book dbBook = bookRepo.findById(bookId).orElseThrow();
+        QrCode dbQrCode = qrCodeRepo.findById(dbBook.getQrCode().getId()).orElseThrow();
+        String content = "http://localhost:8080/api/file/download?id=" + attachment.getId();
         Book save = bookRepo.save(Book.builder()
                 .id(bookId)
                 .book_date(reqBook.getBookDate())
@@ -61,6 +89,11 @@ public class BookServiceImpl implements BookService {
                 .publisher(reqBook.getPublisher())
                 .description(reqBook.getDescription())
                 .name(reqBook.getName())
+                        .qrCode(qrCodeRepo.save(QrCode.builder()
+                                .id(dbBook.getQrCode().getId())
+                                .name(dbQrCode.getName())
+                                .content(content)
+                                .build()))
                 .pdfAtt(attachment)
                 .build());
         return ResponseEntity.ok(save);

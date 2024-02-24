@@ -46,7 +46,7 @@ export default function Book() {
             {books.map((item, index) => {
               return (
                 <div key={index} className="card_book">
-                  <img width={150} height={150} src={qrcode_img} alt="" />
+                  <img width={150} height={150} src={"http://localhost:8080/api/qrCode/" + item.qrCodeId } alt="" />
                   <p>
                     <b>{item.author}-{item.name}</b>
                   </p>

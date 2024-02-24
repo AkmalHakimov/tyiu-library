@@ -5,7 +5,6 @@ import Book from "./pages/Book/Book";
 import HomeAdmin from "./Admin/HomeAdmin/HomeAdmin";
 import Adabiyotlar from "./Admin/Adabiyotlar/Adabiyotlar";
 import AdminCategory from "./Admin/AdminCategory/AdminCategory";
-import AddAdabiyotlar from "./Admin/Adabiyotlar/AddAdabiyotlar/AddAdabiyotlar";
 
 function App() {
   return (

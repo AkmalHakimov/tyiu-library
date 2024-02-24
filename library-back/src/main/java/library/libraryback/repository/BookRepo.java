@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface BookRepo extends JpaRepository<Book,Integer> {
 
-    @Query(value = "SELECT b.id,b.name,b.author,b.pdf_att_id as pdfId, b.publisher,b.description,b.book_date, c.name as categoryName, c.id as categoryId " +
+    @Query(value = "SELECT b.id,b.name,b.author,b.pdf_att_id as pdfId, b.qr_code_id as qrCodeId, b.publisher,b.description,b.book_date, c.name as categoryName, c.id as categoryId " +
             "\n" +
             "FROM books b join public.category c on c.id = b.category_id\n" +
             "WHERE\n" +
