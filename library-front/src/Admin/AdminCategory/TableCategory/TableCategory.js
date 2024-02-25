@@ -180,9 +180,10 @@ const TableCategory = () => {
     getCategories(page);
   }, []);
 
-  function getCategories(page,search = searchInp) {
+  function getCategories(pageParam,search = searchInp) {
     setLoading(true)
-    ApiRequest(`/category?page=${page}&search=`+ (search), "get").then((res) => {
+    setPage(pageParam)
+    ApiRequest(`/category?page=${pageParam}&search=`+ (search), "get").then((res) => {
       setDataSource(res.data.content)
       setTotalPages(res.data.totalElements)
       setLoading(false)

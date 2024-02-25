@@ -31,7 +31,7 @@ export default function Fouter() {
 
         <div className="bottom">
           <hr />
-          <p style={{textAlign: "center",marginBottom:0}}>© 2023 tyiu.uz.</p>
+          <p style={{textAlign: "center",marginBottom:0}}>© {new Date().getFullYear()} tyiu.uz.</p>
         </div>
       </div>
     </div>

@@ -37,11 +37,12 @@ export default function TableAdabiyotlar() {
     { label: "Yo'nalishlar", value: "" },
   ]);
 
+
   const columns = [
     {
       title: "#",
       dataIndex: "id",
-      sorter: true,
+      // sorter: true,
       render: (name) => `${name}`,
       width: "10%",
     },
@@ -101,6 +102,15 @@ export default function TableAdabiyotlar() {
     },
   ];
 
+  // const [number,setNumber] = useState(1);
+  // function handleId(item){
+  //   for (let index = 0; index < 10; index++) {
+  //     number=number+1;
+  //     setNumber([...number])
+  //     return number;
+  //   }
+  // }
+
   useEffect(() => {
     getBooks(page);
     getCategories();
@@ -140,10 +150,11 @@ export default function TableAdabiyotlar() {
       });
     });
   }
-  function getBooks(page, search = searchInp, select = selectVal) {
+  function getBooks(pageParam, search = searchInp, select = selectVal) {
     setLoading(true);
+    setPage(pageParam)
     ApiRequest(
-      `/book?page=${page}&categoryId=${select}&search=` + search,
+      `/book?page=${pageParam}&categoryId=${select}&search=` + search,
       "get"
     ).then((res) => {
       setTotalPages(res.data.totalElements);
@@ -233,8 +244,8 @@ export default function TableAdabiyotlar() {
         pagination={{
           pageSize: 6,
           total: totalPages,
-          onChange: (page) => {
-            getBooks(page);
+          onChange: (paginationPage) => {
+            getBooks(paginationPage);
           },
         }}
         loading={loading}
