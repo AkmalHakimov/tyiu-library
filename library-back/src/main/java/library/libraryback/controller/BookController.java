@@ -1,14 +1,15 @@
 package library.libraryback.controller;
 
 import com.google.zxing.WriterException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletResponse;
-import library.libraryback.entity.Book;
 import library.libraryback.payload.requests.ReqBook;
 import library.libraryback.services.BookService.BookService;
-import library.libraryback.services.EcelService.ExcelService;
+import library.libraryback.services.ExcelService.ExcelService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

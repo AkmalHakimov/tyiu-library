@@ -1,4 +1,4 @@
-package library.libraryback.services.EcelService;
+package library.libraryback.services.ExcelService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpEntity;

@@ -187,7 +187,7 @@ const TableCategory = () => {
       setDataSource(res.data.content)
       setTotalPages(res.data.totalElements)
       setLoading(false)
-    });
+    })
   }
   return (
     <div>
