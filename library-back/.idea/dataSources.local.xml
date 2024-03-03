@@ -16,23 +16,6 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="tyiu_library_db@localhost" uuid="25eb4bad-aec8-4e20-a67d-5f57b14b498e">
-      <database-info product="PostgreSQL" version="16.1" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.1" exact-driver-version="42.6">
-        <identifier-quote-string>&quot;</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
-      <user-name>postgres</user-name>
-      <schema-mapping>
-        <introspection-scope>
-          <node negative="1">
-            <node kind="database" negative="1" />
-            <node kind="database" qname="tyiu_library_db">
-              <node kind="schema" negative="1" />
-            </node>
-          </node>
-        </introspection-scope>
-      </schema-mapping>
-    </data-source>
     <data-source name="@localhost" uuid="84e0ad08-5c41-44cc-853b-c836e08e518b">
       <database-info product="MySQL" version="8.0.35" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.35" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
@@ -45,20 +28,6 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="schema" negative="1" />
-        </introspection-scope>
-      </schema-mapping>
-    </data-source>
-    <data-source name="tyiu_real_library_db@localhost" uuid="ed6f65c8-92ab-4bfc-842d-504b378f9d50">
-      <database-info product="MySQL" version="8.0.35" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.35" exact-driver-version="8.0">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-        <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
-      <user-name>root</user-name>
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema" qname="@" />
         </introspection-scope>
       </schema-mapping>
     </data-source>

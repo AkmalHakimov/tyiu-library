@@ -16,7 +16,7 @@ import java.util.UUID;
 @Builder
 public class Attachment {
     @Id
-    private UUID id;
+    private String id;
     private String prefix;
     private String name;
 }

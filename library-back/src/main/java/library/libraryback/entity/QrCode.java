@@ -18,7 +18,7 @@ import java.util.UUID;
 public class QrCode {
 
     @Id
-    private UUID id;
+    private String id;
 
     private String content;
 

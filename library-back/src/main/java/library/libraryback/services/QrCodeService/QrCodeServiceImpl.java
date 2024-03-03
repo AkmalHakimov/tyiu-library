@@ -29,19 +29,20 @@ public class QrCodeServiceImpl implements QrCodeService {
 
     @Override
     public HttpEntity<?> getOneQrCode(String qrCodeId, HttpServletResponse response) throws IOException {
-        QrCode qrCode = qrCodeRepo.findById(UUID.fromString(qrCodeId)).orElseThrow();
+        QrCode qrCode = qrCodeRepo.findById(qrCodeId).orElseThrow();
         FileCopyUtils.copy(new FileInputStream(qrCode.getName()),response.getOutputStream());
         return ResponseEntity.ok("");
     }
 
     @Override
-    public UUID generateQrCode(UUID pdfId) throws WriterException, IOException {
+    public String generateQrCode(String pdfId) throws WriterException, IOException {
         UUID qrCodeId = UUID.randomUUID();
-        String qrCodePath = "Files/qrCodes/images/";
+//        String qrCodePath = "Files/qrCodes/images/";
+        String qrCodePath = "Files/qrCodes/images_temp/";
         String qrCodeName = qrCodePath + qrCodeId + "_QRCODE.png";
         String qrCodeContent = "http://localhost:8080/api/file/download?id=" + pdfId;
         qrCodeRepo.save(QrCode.builder()
-                .id(qrCodeId)
+                .id(qrCodeId.toString())
                 .name(qrCodeName)
                 .content(qrCodeContent)
                 .build());
@@ -49,6 +50,6 @@ public class QrCodeServiceImpl implements QrCodeService {
         BitMatrix bitMatrix = qrCodeWriter.encode(qrCodeContent, BarcodeFormat.QR_CODE,400,400);
         Path path = FileSystems.getDefault().getPath(qrCodeName);
         MatrixToImageWriter.writeToPath(bitMatrix,"PNG",path);
-        return qrCodeId;
+        return qrCodeId.toString();
     }
 }

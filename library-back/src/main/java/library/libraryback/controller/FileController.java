@@ -26,12 +26,12 @@ public class FileController {
     }
 
     @GetMapping
-    public HttpEntity<?> getFile(@RequestParam UUID id, HttpServletResponse response) throws IOException {
+    public HttpEntity<?> getFile(@RequestParam String id, HttpServletResponse response) throws IOException {
         return fileService.getFile(id, response);
     }
 
     @GetMapping("/download")
-    public HttpEntity<?> downloadFile(@RequestParam(defaultValue = "") UUID id) throws MalformedURLException, UnsupportedEncodingException {
+    public HttpEntity<?> downloadFile(@RequestParam(defaultValue = "") String id) throws MalformedURLException, UnsupportedEncodingException {
         return  fileService.downloadFile(id);
     }
 

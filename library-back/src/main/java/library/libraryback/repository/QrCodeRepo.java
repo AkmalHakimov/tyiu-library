@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface QrCodeRepo extends JpaRepository<QrCode, UUID> {
+public interface QrCodeRepo extends JpaRepository<QrCode, String> {
 
 
 }

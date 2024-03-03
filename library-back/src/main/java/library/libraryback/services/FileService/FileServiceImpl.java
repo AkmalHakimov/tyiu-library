@@ -29,18 +29,18 @@ public class FileServiceImpl implements FileService{
 
     @Override
     public HttpEntity<?> uploadFile(MultipartFile file, String prefix) throws IOException {
-        UUID uuid = UUID.randomUUID();
+        UUID fileId = UUID.randomUUID();
         fileRepo.save(Attachment.builder()
-                        .id(uuid)
-                        .name(uuid + "_" + file.getOriginalFilename())
+                        .id(fileId.toString())
+                        .name(fileId + "_" + file.getOriginalFilename())
                         .prefix(prefix)
                 .build());
-        FileCopyUtils.copy(file.getInputStream(),new FileOutputStream("Files" +prefix + "/" + uuid + "_" + file.getOriginalFilename()));
-            return ResponseEntity.ok(uuid);
+        FileCopyUtils.copy(file.getInputStream(),new FileOutputStream("Files" +prefix + "/" + fileId + "_" + file.getOriginalFilename()));
+            return ResponseEntity.ok(fileId);
     }
 
     @Override
-    public HttpEntity<?> downloadFile(UUID id) throws MalformedURLException, UnsupportedEncodingException {
+    public HttpEntity<?> downloadFile(String id) throws MalformedURLException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
         Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
         Resource resource = new UrlResource((filePath.toUri()));
@@ -48,7 +48,7 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public HttpEntity<?> getFile(UUID id, HttpServletResponse response) throws IOException {
+    public HttpEntity<?> getFile(String id, HttpServletResponse response) throws IOException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
         FileCopyUtils.copy(new FileInputStream("files" + attachment.getPrefix() + "/" + attachment.getName()),response.getOutputStream());
         return ResponseEntity.ok("");
