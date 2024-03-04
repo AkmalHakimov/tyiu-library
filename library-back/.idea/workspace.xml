@@ -4,85 +4,91 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42e288af-eac9-4510-a973-93bcc512f393" name="Changes" comment="">
+    <list default="true" id="c9dfbe97-6605-4e7a-b1c9-04e107911dbc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AutoRunner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/enums/BookTypeEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/exception/ApplicationExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/DownloadPdfsRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../library-front/src/utils/AxiosInterceptor/AxiosInterSeptor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../library-front/src/utils/ErrorNotify/ErrorNotify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/25eb4bad-aec8-4e20-a67d-5f57b14b498e/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/chatdb.1inXrg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/chatdb.1inXrg/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/chatdb.1inXrg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/trellodb.Zt4MUw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/trellodb.Zt4MUw/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/trellodb.Zt4MUw/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/BookStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/BookType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/payload/requests/ReqBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/payload/requests/ReqBook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/EcelService/ExcelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/ExcelService/ExcelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/EcelService/ExcelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/ExcelService/ExcelServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/config/WebMvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/controller/BookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/controller/BookController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/entity/Book$BookBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/entity/Book$BookBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/entity/Book.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/entity/Book.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/entity/BookStatus$BookStatusBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/entity/BookStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/entity/BookType$BookTypeBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/entity/BookType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/repository/BookRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/repository/BookRepo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/services/BookService/BookServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/services/BookService/BookServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-front/src/Admin/AdminCategory/TableCategory/TableCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/Admin/AdminCategory/TableCategory/TableCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;AkmalHakimov&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="15be4bb2-8bde-4c99-9fab-0332fde87afc" />
-        <option name="url" value="https://github.com/AkmalHakimov/tyiu-library.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectColorInfo">{
-        &quot;customColor&quot;: &quot;&quot;,
-        &quot;associatedIndex&quot;: 1
-        }</component>
-  <component name="ProjectId" id="2cZKS06xSEQb7b8o2TpWJY0U6O8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.LibraryBackApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.LibraryBackApplication.executor": "Run",
+    "git-widget-placeholder": "Merging main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="LibraryBackApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="library-back" />
@@ -102,33 +108,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="42e288af-eac9-4510-a973-93bcc512f393" name="Changes" comment="" />
-      <created>1708313666218</created>
+      <changelist id="c9dfbe97-6605-4e7a-b1c9-04e107911dbc" name="Changes" comment="" />
+      <created>1709360668846</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1708313666218</updated>
-      <workItem from="1708313672655" duration="10342000" />
-      <workItem from="1708404101288" duration="153000" />
-      <workItem from="1708408437208" duration="3306000" />
-      <workItem from="1708415116334" duration="1492000" />
-      <workItem from="1708484556126" duration="5340000" />
-      <workItem from="1708570938995" duration="11801000" />
-      <workItem from="1708668263012" duration="3369000" />
-      <workItem from="1708709152921" duration="100000" />
-      <workItem from="1708744572384" duration="4268000" />
-      <workItem from="1708764140094" duration="18376000" />
-      <workItem from="1708875473275" duration="1589000" />
-      <workItem from="1708916661679" duration="300000" />
-      <workItem from="1709101410500" duration="2433000" />
-      <workItem from="1709180119116" duration="3435000" />
-      <workItem from="1709263539236" duration="2922000" />
+      <updated>1709360668846</updated>
+      <workItem from="1709360671849" duration="4873000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>
