@@ -18,13 +18,13 @@ export default function Book() {
   }, []);
 
   function getBooks() {
-    ApiRequest(`/book?categoryId=${params.id}`, "get").then((res) => {
+    ApiRequest.get(`/book?categoryId=${params.id}`).then((res) => {
       setBooks(res.data.content);
     });
   }
 
   function getCategories() {
-    ApiRequest(`/category/all`, "get").then((res) => {
+    ApiRequest.get(`/category/all`).then((res) => {
       setBookCategory(res.data);
     });
   }
@@ -43,7 +43,7 @@ export default function Book() {
       <div className="main_section">
         <div className="container_box">
           <div className="content_box">
-            {books.map((item, index) => {
+            {books?.map((item, index) => {
               return (
                 <div key={index} className="card_book">
                   <img width={150} height={150} src={"http://localhost:8080/api/qrCode/" + item.qrCodeId } alt="" />

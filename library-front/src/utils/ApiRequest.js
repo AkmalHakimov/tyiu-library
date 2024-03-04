@@ -20,17 +20,16 @@ ApiRequest.interceptors.request.use(
 ApiRequest.interceptors.response.use((response) => {
     return response
 }, (error) => {
-    console.log(error);
-    console.log("salom");
-    // let notificationParam = {message: error.message};
-
-    // Remove token and redirect
     if (error.response.status === 401 || error.response.status === 403) {
-        
+        ErrorNotify(error.response.data)
     }
 
     if (error.response.status === 404) {
-        // console.log("404 error");
+        ErrorNotify(error.response.data)
+    }
+
+    if (error.response.status === 500) {
+        ErrorNotify("Serverda xatolik yuz berdi")
     }
 
 

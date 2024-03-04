@@ -83,9 +83,9 @@ const TableCategory = () => {
   const [dataSource, setDataSource] = useState([]);
   const [searchInp,setSearchInp] = useState("");
   const handleDelete = (id) => {
-    ApiRequest(`/category/${id}`, "delete").then((res) => {
+    ApiRequest.delete(`/category/${id}`).then((res) => {
       getCategories(page);
-    });
+    }).catch(()=>{});
   };
 
   function handleEdit(item) {
@@ -156,18 +156,25 @@ const TableCategory = () => {
   };
   const handleOk = () => {
     if (currentItm) {
-      ApiRequest("/category/" + currentItm.id, "put", {
-        name: categoryInp,
+      ApiRequest({
+        url: "/category/" + currentItm.id,
+        method: "put",
+        data:  {
+          name: categoryInp,
+        }
       }).then((res) => {
         setCurrentItm("");
         getCategories(page);
       });
     } else {
-      ApiRequest("/category", "post", {
+      ApiRequest({
+       url:  "/category",
+       method:"post",
+       data: {
         name: categoryInp,
-      }).then((res) => {
+      }}).then((res) => {
         getCategories(page);
-      });
+      }).catch(()=>{});
     }
     setCategoryInp("");
     setIsModalOpen(false);
@@ -183,11 +190,11 @@ const TableCategory = () => {
   function getCategories(pageParam,search = searchInp) {
     setLoading(true)
     setPage(pageParam)
-    ApiRequest(`/category?page=${pageParam}&search=`+ (search), "get").then((res) => {
+    ApiRequest.get(`/category?page=${pageParam}&search=`+ (search)).then((res) => {
       setDataSource(res.data.content)
       setTotalPages(res.data.totalElements)
-      setLoading(false)
-    })
+    }).catch(()=>{})
+    setLoading(false)
   }
   return (
     <div>
