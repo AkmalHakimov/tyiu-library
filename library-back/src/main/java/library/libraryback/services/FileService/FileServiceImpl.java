@@ -6,9 +6,7 @@ import library.libraryback.repository.FileRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +16,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -50,7 +49,13 @@ public class FileServiceImpl implements FileService{
     @Override
     public HttpEntity<?> getFile(String id, HttpServletResponse response) throws IOException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
-        FileCopyUtils.copy(new FileInputStream("files" + attachment.getPrefix() + "/" + attachment.getName()),response.getOutputStream());
-        return ResponseEntity.ok("");
+        File file = new File("files" + attachment.getPrefix() + "/" + attachment.getName());
+        byte[] fileContent = Files.readAllBytes(file.toPath());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("inline", attachment.getName());
+
+        return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
     }
 }

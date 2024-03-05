@@ -4,6 +4,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -26,5 +27,10 @@ public class ApplicationExceptionHandler {
     public HttpEntity<?> InternalServerError(NoResourceFoundException e) {
         e.printStackTrace();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    public ResponseEntity<?> securityError(InternalAuthenticationServiceException e) {
+        return ResponseEntity.status(401).body("Login yoki parol xato");
     }
 }

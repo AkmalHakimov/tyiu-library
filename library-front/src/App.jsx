@@ -5,6 +5,7 @@ import Book from "./pages/Book/Book";
 import HomeAdmin from "./Admin/HomeAdmin/HomeAdmin";
 import Adabiyotlar from "./Admin/Adabiyotlar/Adabiyotlar";
 import AdminCategory from "./Admin/AdminCategory/AdminCategory";
+import Login from "./pages/Login/Login";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           ></Route> */}
         </Route>
         <Route path="/book/:id" element={<Book></Book>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
       </Routes>
     </div>
   );

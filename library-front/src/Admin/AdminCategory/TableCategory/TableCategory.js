@@ -107,7 +107,7 @@ const TableCategory = () => {
       title: "Delete",
       dataIndex: "delete",
       render: (_, record) =>
-        dataSource.length >= 1 ? (
+        dataSource?.length >= 1 ? (
           <Popconfirm
             title="Sure to delete?"
             onConfirm={() => handleDelete(record.id)}
@@ -120,7 +120,7 @@ const TableCategory = () => {
       title: "Edite",
       dataIndex: "",
       render: (_, record) =>
-        dataSource.length >= 1 ? (
+        dataSource?.length >= 1 ? (
           <Button onClick={() => handleEdit(record)} type="primary">
             Edite
           </Button>
@@ -194,7 +194,9 @@ const TableCategory = () => {
       setDataSource(res.data.content)
       setTotalPages(res.data.totalElements)
     }).catch(()=>{})
-    setLoading(false)
+    .finally(() => {
+      setLoading(false);
+    });
   }
   return (
     <div>
@@ -217,7 +219,7 @@ const TableCategory = () => {
         total: totalPages,
         onChange: (page)=>{
           getCategories(page)
-        }
+        } 
       }} loading={loading} bordered dataSource={dataSource} columns={columns} />
       <Modal
         title="Yo'nalish"
