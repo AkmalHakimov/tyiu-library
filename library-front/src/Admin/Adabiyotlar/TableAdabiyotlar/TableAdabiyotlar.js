@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import {
   Form,
   DatePicker,
@@ -17,9 +16,9 @@ import {
 import ApiRequest from "../../../utils/ApiRequest";
 import { UploadOutlined } from "@ant-design/icons";
 import { FileOutlined } from "@ant-design/icons";
-import dayjs from "dayjs";
 import ViewFile from "../../../utils/ViewFile/ViewFile";
 import DownloadExcel from "../../../utils/DownloadExcel/DownloadExcel";
+import sendRequest from "../../../utils/ApiRequest";
 export default function TableAdabiyotlar() {
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState("");
@@ -59,14 +58,13 @@ export default function TableAdabiyotlar() {
     {
       title: "Kitob sanasi",
       dataIndex: "bookDate",
-      render: (bookDate) => new Date(bookDate).getFullYear(),
       with: "30%",
     },
     {
       title: "Delete",
       dataIndex: "",
       render: (item) =>
-      data.length >=1 ? 
+      !!data.length && 
       (
         <Popconfirm
             title="Sure to delete?"
@@ -77,7 +75,7 @@ export default function TableAdabiyotlar() {
         </Button>
           </Popconfirm>
        
-      ): null,
+      ),
       with: "30%",
     },
     {
@@ -132,15 +130,15 @@ export default function TableAdabiyotlar() {
     form.setFieldValue("name", item.name);
     form.setFieldValue("author", item.author);
     form.setFieldValue("publisher", item.publisher);
-    form.setFieldValue("bookDate", dayjs(item.bookdate));
+    form.setFieldValue("bookDate", item.bookDate);
     form.setFieldValue("description", item.description);
     form.setFieldValue("qrCodeId",item.qrCodeId); 
     setCurrentItm(item);
   }
 
   function getCategories() {
-    ApiRequest("/category/all", "get").then((res) => {
-      res.data.map((item, index) => {
+    ApiRequest.get("/category/all").then((res) => {
+      res.data?.map((item, index) => {
         options.push({
           label: item.name,
           value: item.id,
@@ -148,20 +146,30 @@ export default function TableAdabiyotlar() {
         });
         setOptions([...options]);
       });
+    }).catch(err=>{
+      console.log(err);
     });
   }
   function getBooks(pageParam, search = searchInp, select = selectVal) {
-    setLoading(true);
+    // setLoading(true);
     setPage(pageParam)
-    ApiRequest(
-      `/book?page=${pageParam}&categoryId=${select}&search=` + search,
-      "get"
-    ).then((res) => {
+  
+    ApiRequest({
+      url: `/book`,
+      method: "get",
+      params: {
+        page: pageParam,
+        categoryId: select,
+        search
+      }
+    }).then((res) => {
+      console.log(res);
       setTotalPages(res.data.totalElements);
       setData(res.data.content);
       setLoading(false);
-    });
+    }).catch(()=>{})
   }
+
 
   function openModal() {
     setModalVisible(true);
@@ -197,7 +205,8 @@ export default function TableAdabiyotlar() {
   function handleFile(info) {
     let formData = new FormData();
     formData.append("file", info.file);
-    formData.append("prefix", "/kitoblar/pdfs");
+    // formData.append("prefix", "/kitoblar/pdfs");
+    formData.append("prefix", "/kitoblar/pdfs_temp");
     ApiRequest("/file", "post", formData).then((res) => {
     message.success(`${info.file.name} file uploaded successfully`);
       setSavedFile(info.file);
@@ -337,11 +346,12 @@ export default function TableAdabiyotlar() {
               label="Sanasi"
               name="bookDate"
             >
-              <DatePicker
+              <Input placeholder="text" />
+              {/* <DatePicker
                 style={{
                   width: "100%",
                 }}
-              />
+              /> */}
             </Form.Item>
             <Form.Item label="Upload File" name="attachmentId">
               <Upload

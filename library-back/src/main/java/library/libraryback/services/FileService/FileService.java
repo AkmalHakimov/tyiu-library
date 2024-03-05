@@ -13,7 +13,7 @@ import java.util.UUID;
 public interface FileService {
     HttpEntity<?> uploadFile(MultipartFile file, String prefix) throws IOException;
 
-    HttpEntity<?> getFile(UUID id, HttpServletResponse response) throws IOException;
+    HttpEntity<?> getFile(String id, HttpServletResponse response) throws IOException;
 
-    HttpEntity<?> downloadFile(UUID id) throws MalformedURLException, UnsupportedEncodingException;
+    HttpEntity<?> downloadFile(String id) throws MalformedURLException, UnsupportedEncodingException;
 }

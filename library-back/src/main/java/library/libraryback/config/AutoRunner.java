@@ -31,15 +31,15 @@ public class AutoRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<Book> books = bookRepo.getAllPdfUrls(); // Implement this method in your repository
-        for (Book book : books) {
-            try {
-                downloadPdf(book);
-            } catch (IOException e) {
-                System.err.println("Failed to download PDF from URL: " + book.getId());
-                e.printStackTrace();
-            }
-        }
+//        List<Book> books = bookRepo.getAllPdfUrls(); // Implement this method in your repository
+//        for (Book book : books) {
+//            try {
+//                downloadPdf(book);
+//            } catch (IOException e) {
+//                System.err.println("Failed to download PDF from URL: " + book.getId());
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     private void downloadPdf(Book book) throws IOException, WriterException {
@@ -48,7 +48,7 @@ public class AutoRunner implements CommandLineRunner {
         byte[] pdfContent = restTemplate.getForObject(pdfUrl, byte[].class);
 
         if (pdfContent != null) {
-            UUID pdfId = UUID.randomUUID();
+            String pdfId = UUID.randomUUID().toString();
             String prefix = "/kitoblar/pdfs";
             fileRepo.save(Attachment.builder()
                     .id(pdfId)
@@ -56,7 +56,7 @@ public class AutoRunner implements CommandLineRunner {
                     .prefix(prefix)
                     .build());
 
-            UUID qrCodeId = qrCodeServiceImpl.generateQrCode(pdfId);
+            String qrCodeId = qrCodeServiceImpl.generateQrCode(pdfId);
 
             bookRepo.save(Book.builder()
                             .id(book.getId())

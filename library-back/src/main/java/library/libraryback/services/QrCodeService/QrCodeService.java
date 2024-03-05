@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface QrCodeService {
 
-    UUID generateQrCode(UUID bookId) throws WriterException, IOException;
+    String generateQrCode(String bookId) throws WriterException, IOException;
 
     HttpEntity<?> getOneQrCode(String qrCodeId, HttpServletResponse response) throws IOException;
 }

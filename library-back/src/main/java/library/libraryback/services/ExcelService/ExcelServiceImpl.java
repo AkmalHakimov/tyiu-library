@@ -48,9 +48,9 @@ public class ExcelServiceImpl implements ExcelService{
 
         int dataRowIndex = 1;
 
-        CreationHelper creationHelper = workbook.getCreationHelper();
-        CellStyle cellStyle = workbook.createCellStyle();
-        cellStyle.setDataFormat(creationHelper.createDataFormat().getFormat("dd-mm-yyyy"));
+//        CreationHelper creationHelper = workbook.getCreationHelper();
+//        CellStyle cellStyle = workbook.createCellStyle();
+//        cellStyle.setDataFormat(creationHelper.createDataFormat().getFormat("dd-mm-yyyy"));
 
         for (Book book : allBooks) {
             HSSFRow dataRow = sheet.createRow(dataRowIndex);
@@ -61,7 +61,7 @@ public class ExcelServiceImpl implements ExcelService{
             dataRow.createCell(4).setCellValue(book.getPublisher());
             Cell cell = dataRow.createCell(5);
             cell.setCellValue(book.getBook_date());
-            cell.setCellStyle(cellStyle);
+//            cell.setCellStyle(cellStyle);
             dataRowIndex++;
         }
 

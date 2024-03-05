@@ -33,8 +33,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public HttpEntity<?> saveBook(ReqBook book) throws IOException, WriterException {
-        UUID qrCodeId = qrCodeService.generateQrCode(UUID.fromString(book.getPdfId()));
-        Attachment attachment = fileRepo.findById(UUID.fromString(book.getPdfId())).orElseThrow();
+        String qrCodeId = qrCodeService.generateQrCode(book.getPdfId());
+        Attachment attachment = fileRepo.findById(book.getPdfId()).orElseThrow();
         bookRepo.save(Book.builder()
                 .name(book.getName())
                 .book_date(book.getBookDate())
@@ -45,21 +45,6 @@ public class BookServiceImpl implements BookService {
                 .pdfAtt(attachment)
                 .qrCode(qrCodeRepo.findById(qrCodeId).orElseThrow())
                 .build());
-//        bookRepo.save(Book.builder()
-//                        .id(dbBook.getId())
-//                        .qrCode(qrCodeRepo.findById(qrCodeId).orElseThrow())
-//                        .name(dbBook.getName())
-//                        .book_date(dbBook.getBook_date())
-//                        .bookBolim(dbBook.getBookBolim())
-//                        .bookStatus(dbBook.getBookStatus())
-//                        .bookType(dbBook.getBookType())
-//                        .kafedra(dbBook.getKafedra())
-//                        .pdfAtt(dbBook.getPdfAtt())
-//                        .publisher(dbBook.getPublisher())
-//                        .description(dbBook.getDescription())
-//                        .author(dbBook.getAuthor())
-//                        .category(dbBook.getCategory())
-//                .build());
         return ResponseEntity.ok("");
     }
 
@@ -77,7 +62,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public HttpEntity<?> editBook(ReqBook reqBook, Integer bookId) {
-        Attachment attachment = fileRepo.findById(UUID.fromString(reqBook.getPdfId())).orElseThrow();
+        Attachment attachment = fileRepo.findById(reqBook.getPdfId()).orElseThrow();
         Book dbBook = bookRepo.findById(bookId).orElseThrow();
         QrCode dbQrCode = qrCodeRepo.findById(dbBook.getQrCode().getId()).orElseThrow();
         String content = "http://localhost:8080/api/file/download?id=" + attachment.getId();

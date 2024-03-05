@@ -20,8 +20,10 @@ public interface BookProjection {
 //    @Value("#{target.category.name}")
     String getCategoryName();
     String getCategoryId();
+
+    @Value("#{target.pdfId}")
     String getPdfId();
     String getQrCodeId();
     @Value("#{target.book_date}")
-    Timestamp getBookDate();
+    String getBookDate();
 }
