@@ -17,9 +17,10 @@ export default function Home() {
   }, []);
 
   function getCategories() {
-    ApiRequest("/category/all", "get").then((res) => {
+    ApiRequest.get("/category/all").then((res) => {
+      console.log(res.data);
       setCategories(res.data);
-    });
+    }).catch(()=>{});
   }
 
   function GoToBook(categoryId){
@@ -51,7 +52,7 @@ export default function Home() {
           </div>
 
           <div className="main-content">
-            {categories.map((item, index) => {
+            {categories?.map((item, index) => {
               return (
                 <div key={index} className="card_category">
                   <img src={book_img} alt="" />

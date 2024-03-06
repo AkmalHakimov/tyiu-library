@@ -146,9 +146,7 @@ export default function TableAdabiyotlar() {
         });
         setOptions([...options]);
       });
-    }).catch(err=>{
-      console.log(err);
-    });
+    }).catch(()=>{})
   }
   function getBooks(pageParam, search = searchInp, select = selectVal) {
     // setLoading(true);
@@ -207,11 +205,15 @@ export default function TableAdabiyotlar() {
     formData.append("file", info.file);
     // formData.append("prefix", "/kitoblar/pdfs");
     formData.append("prefix", "/kitoblar/pdfs_temp");
-    ApiRequest("/file", "post", formData).then((res) => {
+    ApiRequest({
+      url: "/file",
+      method:"post",
+      data:formData
+    }).then((res) => {
     message.success(`${info.file.name} file uploaded successfully`);
       setSavedFile(info.file);
       setHasFile(res.data);
-    });
+    }).catch(()=>{});
   }
 
 

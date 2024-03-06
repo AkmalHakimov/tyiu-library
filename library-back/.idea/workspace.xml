@@ -5,31 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42e288af-eac9-4510-a973-93bcc512f393" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/74605628-500e-48e5-b7a3-3878e8bee0b6/storage_v2/_src_/database/tyiu_library_db.ENXY7w/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AppFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/exception/AuthEntryPointException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/UserRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/JwtService/JwtService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/JwtService/JwtServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AutoRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AutoRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/Attachment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/QrCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/QrCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/exception/ApplicationExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/exception/ApplicationExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/projections/BookProjection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/projections/BookProjection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/DownloadPdfsRepo.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/FileRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/FileRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/QrCodeRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/QrCodeRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/BookService/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/BookService/BookServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/ExcelService/ExcelServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/ExcelService/ExcelServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/projections/BookProjection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/projections/BookProjection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/repository/BookRepo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/repository/BookRepo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/services/BookService/BookServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/services/BookService/BookServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../library-front/src/Admin/Adabiyotlar/TableAdabiyotlar/TableAdabiyotlar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/Admin/Adabiyotlar/TableAdabiyotlar/TableAdabiyotlar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-front/src/Admin/AdminCategory/TableCategory/TableCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/Admin/AdminCategory/TableCategory/TableCategory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-front/src/pages/Book/Book.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/pages/Book/Book.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-front/src/pages/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/pages/Home/Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,37 +66,40 @@
         &quot;associatedIndex&quot;: 1
         }</component>
   <component name="ProjectId" id="2cZKS06xSEQb7b8o2TpWJY0U6O8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.LibraryBackApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Victus/Desktop/Turkiston_Library/library-back/Files/qrCodes/images_temp&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.LibraryBackApplication.executor": "Run",
+    "git-widget-placeholder": "Merging main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Victus/Desktop/Turkiston_Library/library-back/Files/qrCodes/images_temp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "database.query.execution",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;synapse&quot;,
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "synapse",
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Victus\Desktop\Turkiston_Library\library-back\Files\qrCodes\images_temp" />
@@ -154,8 +150,8 @@
       <workItem from="1709375050524" duration="384000" />
       <workItem from="1709383079014" duration="4926000" />
       <workItem from="1709406151041" duration="76000" />
-      <workItem from="1709446617144" duration="10356000" />
-      <workItem from="1709612897955" duration="7615000" />
+      <workItem from="1709446617144" duration="10390000" />
+      <workItem from="1709546972064" duration="11769000" />
     </task>
     <servers />
   </component>
