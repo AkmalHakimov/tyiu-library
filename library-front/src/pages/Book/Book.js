@@ -6,6 +6,7 @@ import qrcode_img from "../../assets/images/qrcode.png";
 import ApiRequest from "../../utils/ApiRequest";
 import { useParams } from "react-router-dom";
 import ViewFile from "../../utils/ViewFile/ViewFile";
+import DownloadFile from "../../utils/DownloadFile/DownloadFile"
 
 export default function Book() {
   const [books, setBooks] = useState([]);

@@ -9,6 +9,6 @@ export default (item) => {
       }
     } catch (error) {
       console.error('Error opening new tab:', error);
-    }
+    } 
   };
-  
+    
