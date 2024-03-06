@@ -161,7 +161,6 @@ export default function TableAdabiyotlar() {
         search
       }
     }).then((res) => {
-      console.log(res);
       setTotalPages(res.data.totalElements);
       setData(res.data.content);
       setLoading(false);
@@ -186,12 +185,16 @@ export default function TableAdabiyotlar() {
         : value.categoryId,
     };
     if (currentItm) {
-      ApiRequest(`/book?bookId=${currentItm.id}`, "put", obj).then((res) => {
+      ApiRequest({
+        url:`/book?bookId=${currentItm.id}`,
+        method: "POST",
+        data: obj
+      }).then((res) => {
         getBooks(page);
         setCurrentItm("");
       });
     } else {
-      ApiRequest("/book", "post", obj).then((res) => {
+      ApiRequest.post("/book",obj).then((res) => {
         getBooks(page);
       });
     }

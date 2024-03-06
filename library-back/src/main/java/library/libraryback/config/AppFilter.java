@@ -26,11 +26,10 @@
 
         @Override
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-            String token = request.getHeader("token");
+            String token = request.getHeader("Authorization").replaceFirst("Bearer ","");
             String requestPath = request.getRequestURI();
-
             if(requestPath.startsWith("/api")){
-                if(request.getMethod().equalsIgnoreCase("get")){
+                if(request.getMethod().equalsIgnoreCase("get") && token != null){
                     try {
                         filterChain.doFilter(request, response);
                         return;
@@ -85,10 +84,6 @@
 
         private static boolean isOpenUrl(String requestPath){
             return requestPath.equals("/api/auth/login")
-                    || requestPath.equals("/api/auth/access")
-                    || requestPath.equals("/api/book")
-                    || requestPath.startsWith("/api/category")
-                    || requestPath.equals("/api/file");
-
+                    || requestPath.equals("/api/auth/access");
         }
     }

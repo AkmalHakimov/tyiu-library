@@ -5,26 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42e288af-eac9-4510-a973-93bcc512f393" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/payload/requests/ReqLogin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/RoleRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/AuthService/AuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/AuthService/AuthServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../library-front/src/pages/Login/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AppFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AppFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/exception/ApplicationExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/exception/ApplicationExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/FileService/FileServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/QrCodeService/QrCodeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/Admin/AdminCategory/TableCategory/TableCategory.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/Admin/AdminCategory/TableCategory/TableCategory.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/pages/Book/Book.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/pages/Book/Book.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/utils/ViewFile/ViewFile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/utils/ViewFile/ViewFile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/WebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/AuthService/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/AuthService/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/config/WebMvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-front/src/pages/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/pages/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +70,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.LibraryBackApplication.executor": "Run",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Victus/Desktop/Turkiston_Library/library-back/Files/qrCodes/images_temp",
     "node.js.detected.package.eslint": "true",
@@ -154,7 +141,7 @@
       <workItem from="1709446617144" duration="10390000" />
       <workItem from="1709546972064" duration="11769000" />
       <workItem from="1709637661913" duration="9737000" />
-      <workItem from="1709693571939" duration="305000" />
+      <workItem from="1709693571939" duration="7755000" />
     </task>
     <servers />
   </component>
@@ -163,5 +150,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterRequest" memberName="response" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

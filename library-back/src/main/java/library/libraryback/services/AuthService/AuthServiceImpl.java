@@ -38,7 +38,7 @@ public class AuthServiceImpl implements AuthService{
         List<Role> roleList = roleRepo.findAll();
         String accessToken = jwtService.generateJWTToken(user);
         HashMap<String,Object> userDetails = new HashMap<>();
-        userDetails.put("roles",roleList);
+        userDetails.put("roles",user.getRoles());
         userDetails.put("accessToken",accessToken);
         return ResponseEntity.ok(userDetails);
     }

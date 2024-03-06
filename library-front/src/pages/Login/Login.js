@@ -3,8 +3,12 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import ApiRequest from "../../utils/ApiRequest";
 import axios from "axios";
 import { ErrorNotify } from "../../utils/ErrorNotify/ErrorNotify";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginUser() {
+
+  const navigate = useNavigate()
+
   const onFinish = (values) => {
     axios({
         url:"http://localhost:8080/api/auth/login",
@@ -14,7 +18,12 @@ export default function LoginUser() {
             password: values.password
         }
     }).then((res)=>{
-        console.log(res);
+        localStorage.setItem("access_token",res.data.accessToken)
+        console.log(res.data.roles);
+        res.data.roles.filter(item=>item.roleName==="ROLE_ADMIN")[0] ? 
+          navigate("/admin")
+          :
+          navigate("/")
     }).catch(err=>{
         ErrorNotify(err.response.data)  
     })

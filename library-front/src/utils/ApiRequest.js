@@ -10,6 +10,10 @@ const ApiRequest = axios.create({
 
 ApiRequest.interceptors.request.use(
     (config)=>{
+        let x = localStorage.getItem("access_token")
+        if(x){
+            config.headers.Authorization = `Bearer ${x}`
+        }
         return config
     },
     (error)=>{
