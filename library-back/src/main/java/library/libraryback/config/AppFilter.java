@@ -26,14 +26,15 @@
 
         @Override
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-            String token = request.getHeader("Authorization").replaceFirst("Bearer ","");
+            String token = request.getHeader("Authorization")!=null? request.getHeader("Authorization").replaceFirst("Bearer ","") : request.getHeader("Authorization");
             String requestPath = request.getRequestURI();
             if(requestPath.startsWith("/api")){
-                if(request.getMethod().equalsIgnoreCase("get") && token != null){
+                if(request.getMethod().equalsIgnoreCase("get")){
                     try {
                         filterChain.doFilter(request, response);
                         return;
                     }catch (Exception e){
+                        e.printStackTrace();
                         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                         response.getOutputStream().write("Invalid Token".getBytes());
                         response.getOutputStream().close();

@@ -5,7 +5,7 @@ import { Card } from "antd";
 import book_img from "../../assets/images/diamond.png.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ApiRequest from "../../utils/ApiRequest";
-import Footer from "../../layouts/Fouter/Fouter"
+import Footer from "../../layouts/Fouter/Fouter";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
@@ -17,14 +17,16 @@ export default function Home() {
   }, []);
 
   function getCategories() {
-    ApiRequest.get("/category/all").then((res) => {
-      console.log(res.data);
-      setCategories(res.data);
-    }).catch(()=>{});
+    ApiRequest.get("/category/all")
+      .then((res) => {
+        console.log(res.data);
+        setCategories(res.data);
+      })
+      .catch(() => {});
   }
 
-  function GoToBook(categoryId){
-    navigate("/book/" + categoryId)
+  function GoToBook(categoryId) {
+    navigate("/book/" + categoryId);
   }
   return (
     <div>
@@ -32,7 +34,7 @@ export default function Home() {
       <div className="main-section">
         <div className="container">
           <div className="top-text">
-            <h3>
+            <h3 style={{ color: "#85B6CF" }}>
               Xush kelibsiz, Turkiston Yangi Innovatsiyalari universitetining
               elektron kutubxonasiga!
             </h3>
@@ -56,20 +58,29 @@ export default function Home() {
               return (
                 <div key={index} className="card_category">
                   <img src={book_img} alt="" />
-                  <p>{item.name}</p>
-                  <button onClick={()=>GoToBook(item.id)} className="button">Kitoblar</button>
+                  <p
+                    style={{
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {item.name.length > 60
+                      ? `${item.name.slice(0, 60)}...`
+                      : item.name}
+                  </p>
+                  <button onClick={() => GoToBook(item.id)} className="button">
+                    Kitoblar
+                  </button>
                 </div>
               );
             })}
           </div>
         </div>
 
-        <div className="white-box">
-            
-        </div>
+        <div className="white-box"></div>
       </div>
       <Footer></Footer>
     </div>
-    
   );
 }

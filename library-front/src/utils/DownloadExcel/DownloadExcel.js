@@ -1,12 +1,15 @@
 import axios from "axios";
 
 export default ()=>{
+  let access_token = localStorage.getItem("access_token");
+  let tokenHeader = access_token ? { Authorization: `Bearer ${access_token}` } : {};
     axios({
         method: 'get',
         url: 'http://localhost:8080/api/book/excel/download',
         responseType: 'blob',
         headers: {
-          'Content-Type': 'application/octet-stream'
+          'Content-Type': 'application/octet-stream',
+          Authorization: `Bearer ${access_token}`
         }
       })
       .then(response => {

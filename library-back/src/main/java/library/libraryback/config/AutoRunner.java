@@ -70,7 +70,7 @@ public class AutoRunner implements CommandLineRunner {
                             .bookBolim(book.getBookBolim())
                             .bookUrl(book.getBookUrl())
                             .name(book.getName())
-                            .bookType(book.getBookType())
+//                            .bookType(book.getBookType())
                             .book_date(book.getBook_date())
                     .build());
             Path filePath = Paths.get("files" + prefix + "/"+ pdfId + "_" + book.getBookUrl());

@@ -18,7 +18,6 @@ import { UploadOutlined } from "@ant-design/icons";
 import { FileOutlined } from "@ant-design/icons";
 import ViewFile from "../../../utils/ViewFile/ViewFile";
 import DownloadExcel from "../../../utils/DownloadExcel/DownloadExcel";
-import sendRequest from "../../../utils/ApiRequest";
 export default function TableAdabiyotlar() {
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState("");
@@ -115,9 +114,9 @@ export default function TableAdabiyotlar() {
   }, []);
 
   function delItem(bookId) {
-    ApiRequest("/book/" + bookId, "delete").then((res) => {
+    ApiRequest.delete("/book/" + bookId).then((res) => {
       getBooks(page);
-    });
+    }).catch(()=>{});
   }
 
   function editItm(item) {
@@ -187,16 +186,16 @@ export default function TableAdabiyotlar() {
     if (currentItm) {
       ApiRequest({
         url:`/book?bookId=${currentItm.id}`,
-        method: "POST",
+        method: "put",
         data: obj
       }).then((res) => {
         getBooks(page);
         setCurrentItm("");
-      });
+      }).catch(()=>{});
     } else {
-      ApiRequest.post("/book",obj).then((res) => {
+      ApiRequest({url:"/book",method: "post",data: obj}).then((res) => {
         getBooks(page);
-      });
+      }).catch(()=>{});
     }
     setModalVisible(false);
     form.resetFields();

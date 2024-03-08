@@ -3,6 +3,7 @@ package library.libraryback.services.ExcelService;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 import library.libraryback.entity.Book;
+import library.libraryback.enums.BookTypeEnum;
 import library.libraryback.repository.BookRepo;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -45,6 +46,7 @@ public class ExcelServiceImpl implements ExcelService{
         row.createCell(3).setCellValue("Yo'nalishi");
         row.createCell(4).setCellValue("Nashriyot");
         row.createCell(5).setCellValue("Sanasi");
+        row.createCell(6).setCellValue("Tipi");
 
         int dataRowIndex = 1;
 
@@ -57,11 +59,13 @@ public class ExcelServiceImpl implements ExcelService{
             dataRow.createCell(0).setCellValue(dataRowIndex);
             dataRow.createCell(1).setCellValue(book.getName());
             dataRow.createCell(2).setCellValue(book.getAuthor());
-            dataRow.createCell(3).setCellValue(book.getCategory().getName());
+            dataRow.createCell(3).setCellValue(book.getCategory()!=null? book.getCategory().getName() :"");
             dataRow.createCell(4).setCellValue(book.getPublisher());
             Cell cell = dataRow.createCell(5);
             cell.setCellValue(book.getBook_date());
 //            cell.setCellStyle(cellStyle);
+            dataRow.createCell(6).setCellValue(book.getBookType() != null ? getBookTypeAsString(book.getBookType()) : "");
+
             dataRowIndex++;
         }
 
@@ -77,4 +81,18 @@ public class ExcelServiceImpl implements ExcelService{
 
         return ResponseEntity.ok("");
     }
+
+    private String getBookTypeAsString(BookTypeEnum bookType) {
+        switch (bookType) {
+            case IJTIMOIY:
+                return "IJTIMOIY";
+            case ANIQ:
+                return "ANIQ";
+            case AUDIOKITOB:
+                return "AUDIOKITOB";
+            default:
+                return "";
+        }
+    }
+
 }

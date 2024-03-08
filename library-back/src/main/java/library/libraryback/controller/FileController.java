@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import library.libraryback.services.FileService.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +22,7 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public HttpEntity<?> uploadFile(@RequestBody MultipartFile file, @RequestParam String prefix) throws IOException {
         return fileService.uploadFile(file,prefix);
     }
@@ -30,7 +32,8 @@ public class FileController {
         return fileService.getFile(id,response);
     }
 
-    @GetMapping("/download")
+    @PostMapping("/download")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     public HttpEntity<?> downloadFile(@RequestParam(defaultValue = "") String id) throws MalformedURLException, UnsupportedEncodingException {
         return  fileService.downloadFile(id);
     }

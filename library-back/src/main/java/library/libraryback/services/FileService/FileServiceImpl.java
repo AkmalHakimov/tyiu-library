@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,13 +50,37 @@ public class FileServiceImpl implements FileService{
     @Override
     public HttpEntity<?> getFile(String id, HttpServletResponse response) throws IOException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
-        File file = new File("files" + attachment.getPrefix() + "/" + attachment.getName());
-        byte[] fileContent = Files.readAllBytes(file.toPath());
-
+        String contentType = getContentType(attachment.getName());
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_PDF);
-        headers.setContentDispositionFormData("inline", attachment.getName());
+        headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + attachment.getName());
 
-        return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
+        try (InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName())) {
+            byte[] pdfContent = org.springframework.util.StreamUtils.copyToByteArray(inputStream);
+            return ResponseEntity.ok().headers(headers).body(pdfContent);
+        }
+//        File file = new File("files" + attachment.getPrefix() + "/" + attachment.getName());
+//        byte[] fileContent = Files.readAllBytes(file.toPath());
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_PDF);
+//        headers.setContentDispositionFormData("inline", attachment.getName());
+//        return new ResponseEntity<>(fileContent, headers, HttpStatus.OK);
+
+
+    }
+
+    private String getContentType(String fileName) {
+        if (fileName.endsWith(".pdf")) {
+            return "application/pdf";
+        } else if (fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")) {
+            return "image/jpeg";
+        } else if (fileName.endsWith(".png")) {
+            return "image/png";
+        } else {
+            return "application/octet-stream";
+        }
     }
 }
+
+

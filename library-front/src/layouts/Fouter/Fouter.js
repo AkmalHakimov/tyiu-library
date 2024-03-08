@@ -24,8 +24,8 @@ export default function Fouter() {
             <h4>Bog'lanish</h4>
             <hr />
             <p><b>Turkiston Yangi Innovatsiyalar Universiteti</b></p>
-            <p>Telefon: +998 91 305 00 09</p>
-            <p>Buxoro shahar, Yangiobod mfy, G`ijduvon ko'chasi, 74-uy.</p>
+            <p>Telefon: +998 90  511 57 27</p>
+            <p>Buxoro shahar, Bog'dasht MFY, Piridaskir ko'chasi 10-uy.</p>
           </div>
         </div>
 

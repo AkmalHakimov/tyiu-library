@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ErrorNotify } from "../ErrorNotify/ErrorNotify";
 
 export default (item) => {
     // Define an async function
@@ -6,9 +7,13 @@ export default (item) => {
       const downloadUrl = `http://localhost:8080/api/file/download?id=${item.pdfId}`;
   
       try {
-        const response = await axios.get(downloadUrl, {
+        let access_token = localStorage.getItem("access_token");
+        let tokenHeader = access_token ? { Authorization: `Bearer ${access_token}` } : {};
+        const response = await axios.post(downloadUrl, null, {
           responseType: 'blob', // Set the response type to blob
+          headers: tokenHeader,
         });
+        
   
         if (response.data instanceof Blob) {
           const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -20,11 +25,11 @@ export default (item) => {
           document.body.removeChild(a);
           window.URL.revokeObjectURL(url);
         } else {
-          console.error('Invalid response data:', response.data);
+          ErrorNotify("Login First")
           // Handle error, e.g., show an error message to the user
         }
       } catch (error) {
-        console.error('Error downloading file:', error);
+        ErrorNotify("Login First")
         // Handle error, e.g., show an error message to the user
       }
     };

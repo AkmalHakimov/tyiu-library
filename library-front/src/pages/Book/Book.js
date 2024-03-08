@@ -4,29 +4,22 @@ import "../Book/Book.scss";
 import Fouter from "../../layouts/Fouter/Fouter";
 import qrcode_img from "../../assets/images/qrcode.png";
 import ApiRequest from "../../utils/ApiRequest";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ViewFile from "../../utils/ViewFile/ViewFile";
-import DownloadFile from "../../utils/DownloadFile/DownloadFile"
+import DownloadFile from "../../utils/DownloadFile/DownloadFile";
+
 
 export default function Book() {
   const [books, setBooks] = useState([]);
-  const [bookCategory,setBookCategory] = useState("");
   const params = useParams();
 
   useEffect(() => {
     getBooks();
-    getCategories();
   }, []);
 
   function getBooks() {
     ApiRequest.get(`/book?categoryId=${params.id}`).then((res) => {
       setBooks(res.data.content);
-    });
-  }
-
-  function getCategories() {
-    ApiRequest.get(`/category/all`).then((res) => {
-      setBookCategory(res.data);
     });
   }
 
@@ -44,22 +37,57 @@ export default function Book() {
       <div className="main_section">
         <div className="container_box">
           <div className="content_box">
-            {books?.map((item, index) => {
-              return (
-                <div key={index} className="card_book">
-                  <img width={150} height={150} src={"http://localhost:8080/api/qrCode/" + item.qrCodeId } alt="" />
-                  <p>
-                    <b>{item.author}-{item.name}</b>
-                  </p>
-                  <p><span className="text-primary">Kitob toifasi: </span>  {bookCategory?.name}</p>
-                  <button onClick={()=>ViewFile(item)} className="button">Yuklab Olish</button>
-                </div>
-              );
-            })}
+            {books.length !== 0 ? (
+              <>
+                {books?.map((item, index) => {
+                  return (
+                    <div key={index} className="card_book">
+                      <img
+                        width={150}
+                        height={150}
+                        src={
+                          "http://localhost:8080/api/qrCode/" + item.qrCodeId
+                        }
+                        alt=""
+                      />
+                      <p>
+                        <b>
+                          <p style={{
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                          }}>{item.author.slice(0,60)}</p> {item.name}
+                        </b>
+                      </p>
+                      <p>
+                        <span className="text-primary">Kitob toifasi: </span>{" "}
+                        {item.categoryName}
+                      </p>
+                      <button
+                        onClick={() => DownloadFile(item)}
+                        className="button"
+                      >
+                        Yuklab Olish
+                      </button>
+                    </div>
+                  );
+                })}{" "}
+              </>
+            ) : (
+              <h1 className="text-danger">
+                BU BO'LIMDA HOZIRCHA KITOB JOYLANMAGAN! KEYINROQ TEKSHIRIB
+                KO'RING!!!
+              </h1>
+            )}
           </div>
+
+          <Link to={"/"} className="link_style">
+            <p style={{color: "#4f8db3"}}>Bosh sahifaga qaytish</p>
+          </Link>
         </div>
       </div>
       <Fouter></Fouter>
+      
     </div>
   );
 }

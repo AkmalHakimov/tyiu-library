@@ -10,6 +10,7 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class BookController {
     private final ExcelService excelService;
 
     @PostMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public HttpEntity<?> saveBook(@RequestBody ReqBook book) throws IOException, WriterException {
         return bookService.saveBook(book);
     }
@@ -38,11 +40,13 @@ public class BookController {
     }
 
     @DeleteMapping("/{bookId}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public HttpEntity<?> delBook(@PathVariable Integer bookId ){
        return bookService.delBook(bookId);
     }
 
     @PutMapping
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public HttpEntity<?> editBook(@RequestBody ReqBook reqBook,@RequestParam(defaultValue = "") Integer bookId){
         return bookService.editBook(reqBook,bookId);
     }

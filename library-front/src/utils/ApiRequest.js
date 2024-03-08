@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ErrorNotify } from "./ErrorNotify/ErrorNotify";
 
-const BASE_URL = "http://localhost:8080/api";
+export const BASE_URL = "http://localhost:8080/api";
 
 const ApiRequest = axios.create({
     baseURL: BASE_URL,
@@ -24,19 +24,23 @@ ApiRequest.interceptors.request.use(
 ApiRequest.interceptors.response.use((response) => {
     return response
 }, (error) => {
-    if (error.response.status === 401 || error.response.status === 403) {
-        ErrorNotify(error.response.data)
-    }
-
-    if (error.response.status === 404) {
-        ErrorNotify(error.response.data)
-    }
-
-    if (error.response.status === 500) {
-        ErrorNotify("Serverda xatolik yuz berdi")
-    }
-
-
+    switch (error.response?.status) {
+        case 401:
+          ErrorNotify(error.response.data);
+          break;
+        case 404:
+          ErrorNotify(error.response.data);
+          break;
+        case 403:
+          ErrorNotify("You don't have permission");
+          break;
+        case 500:
+          ErrorNotify('Serverda xatolik yuz berdi');
+          break;
+        default:
+          // Handle other status codes as needed
+          break;
+      }
     return Promise.reject(error);
 }
 )

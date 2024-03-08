@@ -34,6 +34,7 @@ public class Book {
     private BookBolim bookBolim;
     @ManyToOne
     private Kafedra kafedra;
+    @Enumerated(EnumType.STRING)
     private BookTypeEnum bookType;
     @OneToOne
     private Attachment pdfAtt;

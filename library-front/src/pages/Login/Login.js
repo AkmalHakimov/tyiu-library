@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from 'antd';
-import ApiRequest from "../../utils/ApiRequest";
 import axios from "axios";
 import { ErrorNotify } from "../../utils/ErrorNotify/ErrorNotify";
 import { useNavigate } from "react-router-dom";

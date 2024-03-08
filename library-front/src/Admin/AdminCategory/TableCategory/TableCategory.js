@@ -165,7 +165,7 @@ const TableCategory = () => {
       }).then((res) => {
         setCurrentItm("");
         getCategories(page);
-      });
+      }).catch(()=>{});
     } else {
       ApiRequest({
        url:  "/category",
