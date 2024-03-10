@@ -18,7 +18,6 @@ export default function LoginUser() {
         }
     }).then((res)=>{
         localStorage.setItem("access_token",res.data.accessToken)
-        console.log(res.data.roles);
         res.data.roles.filter(item=>item.roleName==="ROLE_ADMIN")[0] ? 
           navigate("/admin")
           :
