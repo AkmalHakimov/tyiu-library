@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import {connect} from "react-redux"
-import { Button, Modal, Form, Input, Popconfirm, Table } from "antd";
+import { Button, Modal, Input, Popconfirm, Table } from "antd";
 import "../TableCategory/TableCategory.scss";
-import ApiRequest from "../../../configure/ApiRequestor/ApiRequest";
 import { categoryActions } from "../Redux/Reducers/CategoryReducer";
-
 
 const TableCategory = (props) => {
 
@@ -12,17 +10,6 @@ const TableCategory = (props) => {
     props.getCategories();
   }, []);
 
-  const handleDelete = (id) => {
-    ApiRequest.delete(`/category/${id}`).then((res) => {
-      props.getCategories();
-    }).catch(()=>{});
-  };
-
-  function handleEdit(item) {
-    props.setIsModal();
-    props.setCategoryInp(item.name);
-    props.setCurrentItm(item);
-  }
   const columns = [
     {
       title: "id",
@@ -40,7 +27,7 @@ const TableCategory = (props) => {
         props.dataSource?.length >= 1 ? (
           <Popconfirm
             title="Sure to delete?"
-            onConfirm={() => handleDelete(record.id)}
+            onConfirm={() => props.handleDel(record.id)}
           >
             <Button type="primary">Delete</Button>
           </Popconfirm>
@@ -51,37 +38,12 @@ const TableCategory = (props) => {
       dataIndex: "",
       render: (_, record) =>
         props.dataSource?.length >= 1 ? (
-          <Button onClick={() => handleEdit(record)} type="primary">
+          <Button onClick={() => props.handleEdit(record)} type="primary">
             Edite
           </Button>
         ) : null,
     },
   ];
-  const handleOk = () => {
-    if (props.currentItm) {
-      ApiRequest({
-        url: "/category/" + props.currentItm.id,
-        method: "put",
-        data:  {
-          name: props.categoryInp,
-        }
-      }).then((res) => {
-        props.setCurrentItm("");
-        props.getCategories();
-      }).catch(()=>{});
-    } else {
-      ApiRequest({
-       url:  "/category",
-       method:"post",
-       data: {
-        name: props.categoryInp,
-      }}).then((res) => {
-        props.getCategories();
-      }).catch(()=>{});
-    }
-    props.setCategoryInp("");
-    props.setIsModal()
-  };
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center">
@@ -109,7 +71,7 @@ const TableCategory = (props) => {
       <Modal
         title="Yo'nalish"
         open={props.isModalOpen}
-        onOk={handleOk}
+        onOk={()=>props.handleSave()}
         onCancel={()=>props.setIsModal()}
       >
         <Input

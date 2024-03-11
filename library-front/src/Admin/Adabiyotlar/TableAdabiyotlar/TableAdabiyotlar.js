@@ -18,7 +18,11 @@ import { UploadOutlined } from "@ant-design/icons";
 import { FileOutlined } from "@ant-design/icons";
 import ViewFile from "../../../utils/ViewFile/ViewFile";
 import DownloadExcel from "../../../utils/DownloadExcel/DownloadExcel";
-export default function TableAdabiyotlar() {
+import { connect,useDispatch } from "react-redux";
+import { AdabiyotlarActions } from "../Redux/Reducers/AdabiyotlarReducer";
+import { categoryActions } from "../../AdminCategory/Redux/Reducers/CategoryReducer";
+
+  function TableAdabiyotlar(props) {
   const [data, setData] = useState([]);
   const [totalPages, setTotalPages] = useState("");
   const [loading, setLoading] = useState(false);
@@ -99,19 +103,12 @@ export default function TableAdabiyotlar() {
       with: "30%",
     },
   ];
-
-  // const [number,setNumber] = useState(1);
-  // function handleId(item){
-  //   for (let index = 0; index < 10; index++) {
-  //     number=number+1;
-  //     setNumber([...number])
-  //     return number;
-  //   }
-  // }
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getBooks(page);
-    getCategories();
+    // getBooks(page);
+    // props.getCategories();
+    dispatch(categoryActions.getCategories())
   }, []);
 
   function delItem(bookId) {
@@ -121,7 +118,6 @@ export default function TableAdabiyotlar() {
   }
 
   function editItm(item) {
-    console.log(item);
     setModalVisible(true);
     form.setFieldValue("categoryId", {
       label: item.categoryName,
@@ -136,18 +132,7 @@ export default function TableAdabiyotlar() {
     setCurrentItm(item);
   }
 
-  function getCategories() {
-    ApiRequest.get("/category/all").then((res) => {
-      res.data?.map((item, index) => {
-        options.push({
-          label: item.name,
-          value: item.id,
-          key: index,
-        });
-        setOptions([...options]);
-      });
-    }).catch(()=>{})
-  }
+  
   function getBooks(pageParam, search = searchInp, select = selectVal,getBookPageSize = pageSize) {
     setPageSize(getBookPageSize)
     setPage(pageParam)
@@ -390,3 +375,5 @@ export default function TableAdabiyotlar() {
     </div>
   );
 }
+
+export default connect((state=>state.Adabitotlar),{...AdabiyotlarActions})(TableAdabiyotlar)

@@ -19,7 +19,6 @@ export default function Home() {
   function getCategories() {
     ApiRequest.get("/category/all")
       .then((res) => {
-        console.log(res.data);
         setCategories(res.data);
       })
       .catch(() => {});

@@ -37,17 +37,29 @@ const categoryReducer = createSlice({
         setSearchInp:(state,action)=>{
             state.searchInp = action.payload
         },
-        getCategories:(state,action)=>{
+        getCategories:()=>{
 
         },
-        handleDelete:(state,action)=>{
+        getAllCategories:()=>{
 
         },
-        handleEdit:(state,action)=>{
+        handleDelete:()=>{
 
         },
-        handleSave:(state,action)=>{
+        handleEdit:()=>{
 
+        },
+        handleSave:()=>{
+
+        },
+        handleDel:()=>{
+
+        },
+        handleEdit:()=>{
+            
+        },
+        setOptions:()=>{
+            
         }
     }
 })
