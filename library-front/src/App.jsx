@@ -7,7 +7,7 @@ import Adabiyotlar from "./Admin/Adabiyotlar/Adabiyotlar";
 import AdminCategory from "./Admin/AdminCategory/AdminCategory";
 import Login from "./pages/Login/Login";
 import axios from "axios";
-import { BASE_URL } from "./utils/ApiRequest";
+import { BASE_URL } from "./configure/ApiRequestor/ApiRequest";
 import { useEffect } from "react";
 import NotFound from "./pages/404/NotFound";
 
@@ -21,7 +21,7 @@ function App() {
     if(location.pathname.startsWith("/admin")){
       if(localStorage.getItem("access_token")!==null){
         axios({
-          url:BASE_URL + "/user/me",
+          url:BASE_URL + "api/user/me",
           method: "get",
           headers: {
             Authorization: localStorage.getItem("access_token"),

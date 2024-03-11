@@ -13,7 +13,7 @@ import {
   Typography,
   Popconfirm
 } from "antd";
-import ApiRequest from "../../../utils/ApiRequest";
+import ApiRequest from "../../../configure/ApiRequestor/ApiRequest";
 import { UploadOutlined } from "@ant-design/icons";
 import { FileOutlined } from "@ant-design/icons";
 import ViewFile from "../../../utils/ViewFile/ViewFile";
@@ -29,6 +29,7 @@ export default function TableAdabiyotlar() {
   const [currentItm, setCurrentItm] = useState("");
   const [savedFile, setSavedFile] = useState("");
   const [hasFile, setHasFile] = useState("");
+  const [pageSize,setPageSize] = useState(6);
   const [form] = Form.useForm();
 
   const [options, setOptions] = useState([
@@ -147,17 +148,18 @@ export default function TableAdabiyotlar() {
       });
     }).catch(()=>{})
   }
-  function getBooks(pageParam, search = searchInp, select = selectVal) {
-    // setLoading(true);
+  function getBooks(pageParam, search = searchInp, select = selectVal,getBookPageSize = pageSize) {
+    setPageSize(getBookPageSize)
     setPage(pageParam)
-  
+    
     ApiRequest({
       url: `/book`,
       method: "get",
       params: {
         page: pageParam,
         categoryId: select,
-        search
+        search,
+        offset: getBookPageSize 
       }
     }).then((res) => {
       setTotalPages(res.data.totalElements);
@@ -247,7 +249,7 @@ export default function TableAdabiyotlar() {
             value={searchInp}
             onChange={(e) => {
               setSearchInp(e.target.value);
-              getBooks(page, e.target.value);
+              getBooks(1, e.target.value);
             }}
             placeholder="search..."
           />
@@ -255,12 +257,14 @@ export default function TableAdabiyotlar() {
       </div>
       <Table
         pagination={{
-          pageSize: 6,
+          pageSize: pageSize,
+          // defaultPageSize:10,
           showSizeChanger: true,
           total: totalPages,
-          onChange: (paginationPage) => {
-            getBooks(paginationPage);
+          onChange: (paginationPage,pageSize) => {
+            getBooks(paginationPage,searchInp,selectVal,pageSize);
           },
+          current: page
         }}
         loading={loading}
         columns={columns}

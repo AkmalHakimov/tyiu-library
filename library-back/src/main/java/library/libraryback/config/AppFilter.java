@@ -20,7 +20,6 @@
     @Component
     @RequiredArgsConstructor
     public class AppFilter extends OncePerRequestFilter {
-
         private final JwtService jwtService;
         private final UserRepo userRepo;
 

@@ -4,7 +4,7 @@ import "../Home/Home.scss";
 import { Card } from "antd";
 import book_img from "../../assets/images/diamond.png.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ApiRequest from "../../utils/ApiRequest";
+import ApiRequest from "../../configure/ApiRequestor/ApiRequest";
 import Footer from "../../layouts/Fouter/Fouter";
 import { useNavigate } from "react-router-dom";
 
