@@ -256,6 +256,7 @@ export default function TableAdabiyotlar() {
       <Table
         pagination={{
           pageSize: 6,
+          showSizeChanger: true,
           total: totalPages,
           onChange: (paginationPage) => {
             getBooks(paginationPage);

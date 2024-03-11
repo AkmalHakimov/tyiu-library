@@ -31,6 +31,8 @@ function App() {
           if(!s){
             navigate("/404")
           }
+        }).catch((err)=>{
+           navigate("/login")
         }) 
       }else {
           navigate("/404")

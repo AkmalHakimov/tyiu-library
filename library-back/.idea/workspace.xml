@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42e288af-eac9-4510-a973-93bcc512f393" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AppFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/AppFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/services/AuthService/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/services/AuthService/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/library/libraryback/config/WebMvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/library/libraryback/config/WebMvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/pages/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/pages/Login/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/../library-front/src/utils/ApiRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/library/libraryback/repository/BookRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +66,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.LibraryBackApplication.executor": "Run",
+    "Spring Boot.LibraryBackApplication.executor": "Debug",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Victus/Desktop/Turkiston_Library/library-back/Files/qrCodes/images_temp",
@@ -142,6 +139,7 @@
       <workItem from="1709546972064" duration="11769000" />
       <workItem from="1709637661913" duration="9737000" />
       <workItem from="1709693571939" duration="7755000" />
+      <workItem from="1709953647004" duration="4577000" />
     </task>
     <servers />
   </component>
