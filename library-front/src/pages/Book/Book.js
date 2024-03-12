@@ -7,21 +7,17 @@ import ApiRequest from "../../configure/ApiRequestor/ApiRequest";
 import { Link, useParams } from "react-router-dom";
 import ViewFile from "../../utils/ViewFile/ViewFile";
 import DownloadFile from "../../utils/DownloadFile/DownloadFile";
+import { connect,useDispatch } from "react-redux";
+import { BooksActions } from "../../Admin/Adabiyotlar/Redux/Reducers/BooksReducer";
 
 
-export default function Book() {
-  const [books, setBooks] = useState([]);
+ function Book(props) {
   const params = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getBooks();
+    dispatch(BooksActions.getCategoryBook(params.id))
   }, []);
-
-  function getBooks() {
-    ApiRequest.get(`/book?categoryId=${params.id}`).then((res) => {
-      setBooks(res.data.content);
-    });
-  }
 
   return (
     <div>
@@ -37,9 +33,9 @@ export default function Book() {
       <div className="main_section">
         <div className="container_box">
           <div className="content_box">
-            {books.length !== 0 ? (
+            {props.data.length !== 0 ? (
               <>
-                {books?.map((item, index) => {
+                {props.data?.map((item, index) => {
                   return (
                     <div key={index} className="card_book">
                       <img
@@ -64,7 +60,7 @@ export default function Book() {
                         {item.categoryName}
                       </p>
                       <button
-                        onClick={() => DownloadFile(item)}
+                        onClick={() => ViewFile(item)}
                         className="button"
                       >
                         Yuklab Olish
@@ -91,3 +87,5 @@ export default function Book() {
     </div>
   );
 }
+
+export default connect((state)=>state.Books,{...BooksActions})(Book)

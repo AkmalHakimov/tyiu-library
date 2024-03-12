@@ -61,7 +61,8 @@
         delItem: () => {},
         editItm: (state, action) => {
         },
-        handleFile:()=>{}
+        handleFile:()=>{},
+        getCategoryBook:()=>{}
     },
     });
 

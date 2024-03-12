@@ -7,13 +7,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ApiRequest from "../../configure/ApiRequestor/ApiRequest";
 import Footer from "../../layouts/Fouter/Fouter";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { categoryActions } from "../../Admin/AdminCategory/Redux/Reducers/CategoryReducer";
 
-export default function Home() {
+ function Home(props) {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getCategories();
+    props.getAllCategories();
   }, []);
 
   function getCategories() {
@@ -53,7 +55,7 @@ export default function Home() {
           </div>
 
           <div className="main-content">
-            {categories?.map((item, index) => {
+            {props.categories?.map((item, index) => {
               return (
                 <div key={index} className="card_category">
                   <img src={book_img} alt="" />
@@ -83,3 +85,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default connect((state)=>state.category,categoryActions)(Home)

@@ -28,6 +28,7 @@ function* getAllCategories() {
     })) || []),
   ];
   yield put(BooksActions.setOptions(newOptions));
+  yield put(categoryActions.setCategories(res.data));
 }
 
 function* HandleSave() {

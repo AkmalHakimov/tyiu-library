@@ -10,7 +10,8 @@ const categoryReducer = createSlice({
         currentItm: "",
         totalPages: "",
         page: 1,
-        searchInp: ""
+        searchInp: "",
+        categories: []
     },
     reducers:{
         setDataSource:(state,action)=>{
@@ -57,6 +58,9 @@ const categoryReducer = createSlice({
         },
         handleEdit:()=>{
             
+        },
+        setCategories:(state,action)=>{
+            state.categories = action.payload
         }
     }
 })

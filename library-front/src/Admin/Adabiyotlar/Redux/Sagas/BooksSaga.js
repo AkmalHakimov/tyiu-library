@@ -81,10 +81,19 @@ function* handleFile(action){
     message.success(`${info.file.name} file uploaded successfully`);
 }
 
+function* getCategoryBook(action){
+  if(action.payload){
+    const res = yield ApiRequest(`/book?categoryId=${action.payload}`,"get")
+    yield put(BooksActions.setData(res.data.content))
+  }
+ 
+}
+
 export function* BooksSaga() {
   yield takeEvery("Books/getBooks", getBooks);
   yield takeEvery("Books/handleSave", handleSave);
   yield takeEvery("Books/delItem", delItem);
   yield takeEvery("Books/editItm", editItm);
   yield takeEvery("Books/handleFile", handleFile);
+  yield takeEvery("Books/getCategoryBook", getCategoryBook);
 }
