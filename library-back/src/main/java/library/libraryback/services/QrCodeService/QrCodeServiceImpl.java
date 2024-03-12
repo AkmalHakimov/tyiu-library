@@ -38,7 +38,7 @@ public class QrCodeServiceImpl implements QrCodeService {
     public String generateQrCode(String pdfId) throws WriterException, IOException {
         UUID qrCodeId = UUID.randomUUID();
 //        String qrCodePath = "Files/qrCodes/images/";
-        String qrCodePath = "Files/qrCodes/images_temp/";
+        String qrCodePath = "Files/qrCodes/images_temp/"    ;
         String qrCodeName = qrCodePath + qrCodeId + "_QRCODE.png";
         String qrCodeContent = "http://localhost:8080/api/file/download?id=" + pdfId;
         qrCodeRepo.save(QrCode.builder()

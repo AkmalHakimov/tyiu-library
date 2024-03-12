@@ -57,9 +57,6 @@ const categoryReducer = createSlice({
         },
         handleEdit:()=>{
             
-        },
-        setOptions:()=>{
-            
         }
     }
 })

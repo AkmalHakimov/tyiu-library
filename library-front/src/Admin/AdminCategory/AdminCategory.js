@@ -18,13 +18,7 @@ const { Header, Content, Footer, Sider } = Layout;
               margin: "0 16px",
             }}
           >
-            <Breadcrumb
-              style={{
-                margin: "16px 0",
-              }}
-            >
               <h1>Yo'nalishlar</h1>
-            </Breadcrumb>
             <div
             
               style={{

@@ -34,12 +34,12 @@ const TableCategory = (props) => {
         ) : null,
     },
     {
-      title: "Edite",
+      title: "Edit",
       dataIndex: "",
       render: (_, record) =>
         props.dataSource?.length >= 1 ? (
           <Button onClick={() => props.handleEdit(record)} type="primary">
-            Edite
+            Edit
           </Button>
         ) : null,
     },
@@ -67,7 +67,11 @@ const TableCategory = (props) => {
           props.setPage(page)
           props.getCategories()
         } 
-      }} loading={props.loading} bordered dataSource={props.dataSource} columns={columns} />
+      }} loading={props.loading} bordered dataSource={props.dataSource.map((item) => ({
+        ...item,
+        key: item.id, // Assuming 'id' is a unique identifier for each item
+        // Other properties...
+      }))} columns={columns} />
       <Modal
         title="Yo'nalish"
         open={props.isModalOpen}

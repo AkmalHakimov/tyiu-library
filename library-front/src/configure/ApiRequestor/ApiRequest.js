@@ -48,7 +48,7 @@ export const BASE_URL = "http://localhost:8080/";
 // export default ApiRequest;
   
 
-export default function ApiRequest (url, method, data) {
+export default function ApiRequest (url, method, data,params) {
 
   let x = localStorage.getItem("access_token")
   return AxiosInterSeptor({
@@ -56,6 +56,7 @@ export default function ApiRequest (url, method, data) {
     url: "/api" + url,
     method,
     data,
+    params,
     headers:{
       "Authorization": `Bearer ${x}`
   }

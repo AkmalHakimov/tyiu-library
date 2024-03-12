@@ -31,7 +31,7 @@ const HomeAdmin = () => {
   }
   return (
     <>
-      <Header>{/* <DropDown></DropDown> */}</Header>
+      <Header style={{display: "flex", justifyContent: "center",alignItems: "center", color: "white" }}><h1>Admin Panel</h1></Header>
       <Layout
         style={{
           minHeight: "100vh",
@@ -82,8 +82,8 @@ const HomeAdmin = () => {
                     icon: <CgProfile />,
                   },
                   {
-                    label: "sozlamalar",
-                    key: "sozlamalar",
+                    label: "Sozlamalar",
+                    key: "configuration",
                     icon: <FaUserEdit />,
                   },
                   {
