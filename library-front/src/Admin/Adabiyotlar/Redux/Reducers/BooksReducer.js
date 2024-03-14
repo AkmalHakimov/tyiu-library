@@ -1,4 +1,6 @@
     import { createSlice } from "@reduxjs/toolkit";
+    import ApiRequest from "../../../../configure/ApiRequestor/ApiRequest";
+    import {message} from "antd"
 
     const BooksReducer = createSlice({
     name: "Books",
@@ -13,6 +15,7 @@
         currentItm: "",
         savedFile: "",
         hasFile: "",
+        savedFile: "",
         pageSize: 6,
         options: [],
     },
@@ -55,16 +58,12 @@
         setOptions: (state, action) => {
         state.options = action.payload;
         },
-        handleSave: (state, action) => {
-          
-        },
+        handleSave: (state, action) => {},
         delItem: () => {},
-        editItm: (state, action) => {
-        },
-        handleFile:()=>{},
         getCategoryBook:()=>{}
     },
     });
+
 
     export const BooksActions = { ...BooksReducer.actions };
     export default BooksReducer.reducer;

@@ -79,7 +79,6 @@ import { categoryActions } from "../../Admin/AdminCategory/Redux/Reducers/Catego
           </div>
         </div>
 
-        <div className="white-box"></div>
       </div>
       <Footer></Footer>
     </div>

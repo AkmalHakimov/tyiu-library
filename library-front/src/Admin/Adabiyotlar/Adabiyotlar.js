@@ -1,11 +1,10 @@
 import React from "react";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Layout,theme,Typography } from "antd";
 import TableAdabiyotlar from "./TableAdabiyotlar/TableAdabiyotlar";
-import Item from "antd/es/list/Item";
 
 export default function Adabiyotlar() {
   const { Header, Content, Footer, Sider } = Layout;
-
+  const { Title } = Typography;
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -16,7 +15,10 @@ export default function Adabiyotlar() {
           margin: "0 16px",
         }}
       >
-          <h1>Adabiyotlar</h1>
+            <div style={{
+                width: "100%",
+                paddingTop: 10
+              }}><Title>Adabiyotlar</Title></div>
         <div
           style={{
             padding: 24,

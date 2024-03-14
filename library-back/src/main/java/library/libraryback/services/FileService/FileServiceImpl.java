@@ -2,6 +2,7 @@ package library.libraryback.services.FileService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import library.libraryback.entity.Attachment;
+import library.libraryback.entity.QrCode;
 import library.libraryback.repository.FileRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -20,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,6 +47,21 @@ public class FileServiceImpl implements FileService{
         Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
         Resource resource = new UrlResource((filePath.toUri()));
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + attachment.getName() + "\"").body(resource);
+    }
+
+    @Override
+    public void deleteRedundantFile() throws IOException {
+        List<Attachment> redundantFilePdfs = fileRepo.findRedundantFilePdf();
+        for (Attachment redundantFilePdf : redundantFilePdfs) {
+            fileRepo.deleteById(redundantFilePdf.getId());
+            Path filePath = Paths.get("Files" + redundantFilePdf.getPrefix() + "/",redundantFilePdf.getName());
+            if(Files.exists(filePath)){
+                Files.delete(filePath);
+                System.out.println("File deleted: " + filePath);
+            }else{
+                System.out.println("File not found: " + filePath);
+            }
+        }
     }
 
     @Override

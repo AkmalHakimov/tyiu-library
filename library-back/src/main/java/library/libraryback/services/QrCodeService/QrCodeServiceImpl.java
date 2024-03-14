@@ -18,7 +18,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,10 +38,25 @@ public class QrCodeServiceImpl implements QrCodeService {
     }
 
     @Override
+    public void deleteRedundantQrcode() throws IOException {
+        List<QrCode> redundantQrCode = qrCodeRepo.findRedundantQrCode();
+        for (QrCode qrCode : redundantQrCode) {
+            qrCodeRepo.deleteById(qrCode.getId());
+            Path filePath = Paths.get(qrCode.getName());
+            if(Files.exists(filePath)){
+                Files.delete(filePath);
+                System.out.println("File deleted: " + filePath);
+            }else{
+                System.out.println("File not found: " + filePath);
+            }
+        }
+    }
+
+    @Override
     public String generateQrCode(String pdfId) throws WriterException, IOException {
         UUID qrCodeId = UUID.randomUUID();
 //        String qrCodePath = "Files/qrCodes/images/";
-        String qrCodePath = "Files/qrCodes/images_temp/"    ;
+        String qrCodePath = "Files/qrCodes/images_temp/";
         String qrCodeName = qrCodePath + qrCodeId + "_QRCODE.png";
         String qrCodeContent = "http://localhost:8080/api/file/download?id=" + pdfId;
         qrCodeRepo.save(QrCode.builder()

@@ -28,6 +28,7 @@
   background-position: center;
   font-family: "sansregular";
   padding-bottom: 20px; 
+  display: flex;
 
 
   .container_box{
@@ -39,6 +40,8 @@
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    min-height: 54vh;
+
 
     .content_box{
         display: flex;

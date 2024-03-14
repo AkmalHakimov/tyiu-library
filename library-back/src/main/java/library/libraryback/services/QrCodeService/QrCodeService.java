@@ -13,4 +13,6 @@ public interface QrCodeService {
     String generateQrCode(String bookId) throws WriterException, IOException;
 
     HttpEntity<?> getOneQrCode(String qrCodeId, HttpServletResponse response) throws IOException;
+
+    void deleteRedundantQrcode() throws IOException;
 }

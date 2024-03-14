@@ -16,4 +16,6 @@ public interface FileService {
     HttpEntity<?> getFile(String id,HttpServletResponse response) throws IOException;
 
     HttpEntity<?> downloadFile(String id) throws MalformedURLException, UnsupportedEncodingException;
+
+    void deleteRedundantFile() throws IOException;
 }

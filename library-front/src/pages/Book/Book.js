@@ -2,11 +2,8 @@ import React, { useEffect, useState } from "react";
 import logo_img from "../../assets/images/logo.png";
 import "../Book/Book.scss";
 import Fouter from "../../layouts/Fouter/Fouter";
-import qrcode_img from "../../assets/images/qrcode.png";
-import ApiRequest from "../../configure/ApiRequestor/ApiRequest";
 import { Link, useParams } from "react-router-dom";
 import ViewFile from "../../utils/ViewFile/ViewFile";
-import DownloadFile from "../../utils/DownloadFile/DownloadFile";
 import { connect,useDispatch } from "react-redux";
 import { BooksActions } from "../../Admin/Adabiyotlar/Redux/Reducers/BooksReducer";
 
@@ -82,7 +79,9 @@ import { BooksActions } from "../../Admin/Adabiyotlar/Redux/Reducers/BooksReduce
           </Link>
         </div>
       </div>
-      <Fouter></Fouter>
+     <div>
+     <Fouter></Fouter>
+     </div>
       
     </div>
   );

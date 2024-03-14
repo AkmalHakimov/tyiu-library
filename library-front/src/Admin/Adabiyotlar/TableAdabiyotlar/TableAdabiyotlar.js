@@ -18,7 +18,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import { FileOutlined } from "@ant-design/icons";
 import ViewFile from "../../../utils/ViewFile/ViewFile";
 import DownloadExcel from "../../../utils/DownloadExcel/DownloadExcel";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { BooksActions } from "../Redux/Reducers/BooksReducer";
 import { categoryActions } from "../../AdminCategory/Redux/Reducers/CategoryReducer";
 
@@ -42,7 +42,7 @@ function TableAdabiyotlar(props) {
     {
       title: "#",
       dataIndex: "id",
-      render: (name) => `${name}`,
+      render: (text, name,index) => (props.pageSize * (props.page - 1)) + (index + 1),
       width: "10%",
     },
     {
@@ -161,7 +161,6 @@ function TableAdabiyotlar(props) {
       <Table
         pagination={{
           pageSize: props.pageSize,
-          // defaultPageSize:10,
           showSizeChanger: true,
           total: props.totalPages,
           onChange: (paginationPage, pageSize) => {
