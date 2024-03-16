@@ -37,14 +37,17 @@ public class FileServiceImpl implements FileService{
                         .name(fileId + "_" + file.getOriginalFilename())
                         .prefix(prefix)
                 .build());
-        FileCopyUtils.copy(file.getInputStream(),new FileOutputStream("Files" +prefix + "/" + fileId + "_" + file.getOriginalFilename()));
+//        FileOutputStream fileOutputStream = new FileOutputStream("Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+        FileOutputStream fileOutputStream = new FileOutputStream("/root/Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+        FileCopyUtils.copy(file.getInputStream(),fileOutputStream);
             return ResponseEntity.ok(fileId);
     }
 
     @Override
     public HttpEntity<?> downloadFile(String id) throws MalformedURLException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
-        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
+//        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
+        Path filePath = Paths.get(  "/root/Files" + attachment.getPrefix() + "/",attachment.getName());
         Resource resource = new UrlResource((filePath.toUri()));
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + attachment.getName() + "\"").body(resource);
     }
@@ -54,7 +57,8 @@ public class FileServiceImpl implements FileService{
         List<Attachment> redundantFilePdfs = fileRepo.findRedundantFilePdf();
         for (Attachment redundantFilePdf : redundantFilePdfs) {
             fileRepo.deleteById(redundantFilePdf.getId());
-            Path filePath = Paths.get("Files" + redundantFilePdf.getPrefix() + "/",redundantFilePdf.getName());
+//            Path filePath = Paths.get("Files" + redundantFilePdf.getPrefix() + "/",redundantFilePdf.getName());
+            Path filePath = Paths.get("/root/Files" + redundantFilePdf.getPrefix() + "/",redundantFilePdf.getName());
             if(Files.exists(filePath)){
                 Files.delete(filePath);
                 System.out.println("File deleted: " + filePath);
@@ -71,8 +75,8 @@ public class FileServiceImpl implements FileService{
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, contentType);
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + attachment.getName());
-
-        try (InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName())) {
+//        InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName());
+        try (InputStream inputStream = new FileInputStream("/root/Files" + attachment.getPrefix() + "/" + attachment.getName())) {
             byte[] pdfContent = org.springframework.util.StreamUtils.copyToByteArray(inputStream);
             return ResponseEntity.ok().headers(headers).body(pdfContent);
         }

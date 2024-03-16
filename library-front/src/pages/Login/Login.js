@@ -3,6 +3,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import axios from "axios";
 import { ErrorNotify } from "../../utils/ErrorNotify/ErrorNotify";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../configure/ApiRequestor/ApiRequest";
 
 export default function LoginUser() {
 
@@ -10,7 +11,7 @@ export default function LoginUser() {
 
   const onFinish = (values) => {
     axios({
-        url:"http://localhost:8080/api/auth/login",
+        url: BASE_URL + "api/auth/login",
         method:"post",
         data:{
             userName: values.userName,

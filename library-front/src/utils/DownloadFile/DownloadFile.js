@@ -1,17 +1,18 @@
 import axios from "axios";
 import { ErrorNotify } from "../ErrorNotify/ErrorNotify";
+import { BASE_URL } from "../../configure/ApiRequestor/ApiRequest";
 
 export default (item) => {
     // Define an async function
     const downloadFile = async (item) => {
-      const downloadUrl = `http://localhost:8080/api/file/download?id=${item.pdfId}`;
+      const downloadUrl = BASE_URL + `api/file/download?id=${item.pdfId}`;
   
       try {
         let access_token = localStorage.getItem("access_token");
         let tokenHeader = access_token ? { Authorization: `Bearer ${access_token}` } : {};
         const response = await axios.post(downloadUrl, null, {
           responseType: 'blob', // Set the response type to blob
-          headers: tokenHeader,
+          headers: tokenHeader, 
         });
         
   

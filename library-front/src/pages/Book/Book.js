@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import ViewFile from "../../utils/ViewFile/ViewFile";
 import { connect,useDispatch } from "react-redux";
 import { BooksActions } from "../../Admin/Adabiyotlar/Redux/Reducers/BooksReducer";
+import { BASE_URL } from "../../configure/ApiRequestor/ApiRequest";
 
 
  function Book(props) {
@@ -39,7 +40,7 @@ import { BooksActions } from "../../Admin/Adabiyotlar/Redux/Reducers/BooksReduce
                         width={150}
                         height={150}
                         src={
-                          "http://localhost:8080/api/qrCode/" + item.qrCodeId
+                          BASE_URL+"api/qrCode/" + item.qrCodeId
                         }
                         alt=""
                       />

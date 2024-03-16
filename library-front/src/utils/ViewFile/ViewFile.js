@@ -1,6 +1,8 @@
+import { BASE_URL } from "../../configure/ApiRequestor/ApiRequest";
+
 export default (item) => {
     try {
-      const newTab = window.open(`http://localhost:8080/api/file?id=${item.pdfId}`, '_blank');
+      const newTab = window.open(BASE_URL + `api/file?id=${item.pdfId}`, '_blank');
   
       if (newTab) {
         newTab.focus();

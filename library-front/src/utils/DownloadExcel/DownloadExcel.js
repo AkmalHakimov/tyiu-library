@@ -1,11 +1,12 @@
 import axios from "axios";
+import { BASE_URL } from "../../configure/ApiRequestor/ApiRequest";
 
 export default ()=>{
   let access_token = localStorage.getItem("access_token");
   let tokenHeader = access_token ? { Authorization: `Bearer ${access_token}` } : {};
     axios({
         method: 'get',
-        url: 'http://localhost:8080/api/book/excel/download',
+        url: BASE_URL + 'api/book/excel/download',
         responseType: 'blob',
         headers: {
           'Content-Type': 'application/octet-stream',

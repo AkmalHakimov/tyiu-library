@@ -32,8 +32,8 @@ public class FileController {
         return fileService.getFile(id,response);
     }
 
-    @PostMapping("/download")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+    @GetMapping("/download")
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     public HttpEntity<?> downloadFile(@RequestParam(defaultValue = "") String id) throws MalformedURLException, UnsupportedEncodingException {
         return  fileService.downloadFile(id);
     }

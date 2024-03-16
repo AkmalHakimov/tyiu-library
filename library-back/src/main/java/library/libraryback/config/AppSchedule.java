@@ -18,6 +18,7 @@ public class AppSchedule {
     private final FileServiceImpl fileService;
 
     @Scheduled(fixedDelay = 1000*60*60*24*7)
+//    @Scheduled(fixedDelay = 10000)
         public void EveryWeekDeletingRedundantFiles() throws IOException {
             qrCodeService.deleteRedundantQrcode();
             fileService.deleteRedundantFile();
