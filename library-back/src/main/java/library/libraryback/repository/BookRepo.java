@@ -19,6 +19,6 @@ public interface BookRepo extends JpaRepository<Book,Integer> {
                 "   OR (category_id = :categoryId)) and (lower(concat(author, ' ', b.name)) like lower(concat('%',:search,'%'))) order by id desc;\n",nativeQuery = true)
     Page<BookProjection> getBooks(Integer categoryId, Pageable pageable,String search);
 
-    @Query(value = "select * from books where book_type != 3 and qr_code_id is null and pdf_att_id is null",nativeQuery = true)
-    List<Book> getAllPdfUrls();
+//    @Query(value = "select * from books where book_type != 3 and qr_code_id is null and pdf_att_id is null",nativeQuery = true)
+//    List<Book> getAllPdfUrls();
 }

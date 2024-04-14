@@ -64,7 +64,7 @@ public class ExcelServiceImpl implements ExcelService{
             Cell cell = dataRow.createCell(5);
             cell.setCellValue(book.getBook_date());
 //            cell.setCellStyle(cellStyle);
-            dataRow.createCell(6).setCellValue(book.getBookType() != null ? getBookTypeAsString(book.getBookType()) : "");
+            dataRow.createCell(6).setCellValue(book.getBookType() != null ? book.getBookType().name() : "");
 
             dataRowIndex++;
         }
@@ -82,17 +82,17 @@ public class ExcelServiceImpl implements ExcelService{
         return ResponseEntity.ok("");
     }
 
-    private String getBookTypeAsString(BookTypeEnum bookType) {
-        switch (bookType) {
-            case IJTIMOIY:
-                return "IJTIMOIY";
-            case ANIQ:
-                return "ANIQ";
-            case AUDIOKITOB:
-                return "AUDIOKITOB";
-            default:
-                return "";
-        }
-    }
+//    private String getBookTypeAsString(BookTypeEnum bookType) {
+//        switch (bookType) {
+//            case IJTIMOIY:
+//                return "IJTIMOIY";
+//            case ANIQ:
+//                return "ANIQ";
+//            case AUDIOKITOB:
+//                return "AUDIOKITOB";
+//            default:
+//                return "";
+//        }
+//    }
 
 }

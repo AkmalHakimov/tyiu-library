@@ -31,6 +31,8 @@ public class AutoRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+
 //        List<Book> books = bookRepo.getAllPdfUrls(); // Implement this method in your repository
 //        for (Book book : books) {
 //            try {
