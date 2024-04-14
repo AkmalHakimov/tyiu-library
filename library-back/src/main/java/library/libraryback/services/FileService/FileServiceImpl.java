@@ -2,6 +2,7 @@ package library.libraryback.services.FileService;
 
 import jakarta.servlet.http.HttpServletResponse;
 import library.libraryback.entity.Attachment;
+import library.libraryback.entity.QrCode;
 import library.libraryback.repository.FileRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -20,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,16 +37,35 @@ public class FileServiceImpl implements FileService{
                         .name(fileId + "_" + file.getOriginalFilename())
                         .prefix(prefix)
                 .build());
-        FileCopyUtils.copy(file.getInputStream(),new FileOutputStream("Files" +prefix + "/" + fileId + "_" + file.getOriginalFilename()));
+//        FileOutputStream fileOutputStream = new FileOutputStream("Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+        FileOutputStream fileOutputStream = new FileOutputStream("/root/Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+        FileCopyUtils.copy(file.getInputStream(),fileOutputStream);
             return ResponseEntity.ok(fileId);
     }
 
     @Override
     public HttpEntity<?> downloadFile(String id) throws MalformedURLException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
-        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
+//        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
+        Path filePath = Paths.get(  "/root/Files" + attachment.getPrefix() + "/",attachment.getName());
         Resource resource = new UrlResource((filePath.toUri()));
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + attachment.getName() + "\"").body(resource);
+    }
+
+    @Override
+    public void deleteRedundantFile() throws IOException {
+        List<Attachment> redundantFilePdfs = fileRepo.findRedundantFilePdf();
+        for (Attachment redundantFilePdf : redundantFilePdfs) {
+            fileRepo.deleteById(redundantFilePdf.getId());
+//            Path filePath = Paths.get("Files" + redundantFilePdf.getPrefix() + "/",redundantFilePdf.getName());
+            Path filePath = Paths.get("/root/Files" + redundantFilePdf.getPrefix() + "/",redundantFilePdf.getName());
+            if(Files.exists(filePath)){
+                Files.delete(filePath);
+                System.out.println("File deleted: " + filePath);
+            }else{
+                System.out.println("File not found: " + filePath);
+            }
+        }
     }
 
     @Override
@@ -54,8 +75,8 @@ public class FileServiceImpl implements FileService{
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, contentType);
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + attachment.getName());
-
-        try (InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName())) {
+//        InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName());
+        try (InputStream inputStream = new FileInputStream("/root/Files" + attachment.getPrefix() + "/" + attachment.getName())) {
             byte[] pdfContent = org.springframework.util.StreamUtils.copyToByteArray(inputStream);
             return ResponseEntity.ok().headers(headers).body(pdfContent);
         }

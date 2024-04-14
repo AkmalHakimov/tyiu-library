@@ -1,10 +1,12 @@
 import React from 'react'
-import { Breadcrumb,Layout, Menu, theme } from "antd";
+import { Breadcrumb,Layout, Menu, Typography, theme } from "antd";
 import TableCategory from './TableCategory/TableCategory';
+import Title from 'antd/es/skeleton/Title';
 
 
 export default function AdminCategory() {
 const { Header, Content, Footer, Sider } = Layout;
+const { Title } = Typography;
 
 
     const {
@@ -18,7 +20,10 @@ const { Header, Content, Footer, Sider } = Layout;
               margin: "0 16px",
             }}
           >
-              <h1>Yo'nalishlar</h1>
+              <div style={{
+                width: "100%",
+                paddingTop: 10
+              }}><Title>Yo'nalishlar</Title></div>
             <div
             
               style={{

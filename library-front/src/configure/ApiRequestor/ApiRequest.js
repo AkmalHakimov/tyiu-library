@@ -2,6 +2,7 @@ import axios from "axios";
 import { ErrorNotify } from "../../utils/ErrorNotify/ErrorNotify";
 import AxiosInterSeptor from "../AxiosInterceptor/AxiosInterSeptor"
 export const BASE_URL = "http://localhost:8080/";
+// export const BASE_URL = "http://5.35.87.141:8080/";
 
 // const ApiRequest = axios.create({
 //     baseURL: BASE_URL,
