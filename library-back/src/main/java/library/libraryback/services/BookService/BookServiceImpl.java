@@ -35,7 +35,7 @@ public class BookServiceImpl implements BookService {
     public HttpEntity<?> saveBook(ReqBook book) throws IOException, WriterException {
         String qrCodeId = qrCodeService.generateQrCode(book.getPdfId());
         Attachment attachment = fileRepo.findById(book.getPdfId()).orElseThrow();
-        bookRepo.save(Book.builder()
+        Book savedBook = bookRepo.save(Book.builder()
                 .name(book.getName())
                 .book_date(book.getBookDate())
                 .category(categoryRepo.findById(book.getCategoryId()).orElseThrow())
@@ -45,7 +45,7 @@ public class BookServiceImpl implements BookService {
                 .pdfAtt(attachment)
                 .qrCode(qrCodeRepo.findById(qrCodeId).orElseThrow())
                 .build());
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(savedBook);
     }
 
     @Override
