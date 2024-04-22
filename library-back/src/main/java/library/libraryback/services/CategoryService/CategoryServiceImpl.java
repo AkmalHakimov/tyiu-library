@@ -3,6 +3,7 @@ package library.libraryback.services.CategoryService;
 import library.libraryback.entity.Category;
 import library.libraryback.repository.CategoryRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
@@ -18,7 +19,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public HttpEntity<?> getCategories(Integer page, String search,Integer offset) {
         Pageable pageable =  PageRequest.of(page-1,offset);
-        return ResponseEntity.ok(categoryRepo.getCategories(pageable,search));
+        Page<Category> categories = categoryRepo.getCategories(pageable, search);
+        return ResponseEntity.ok(categories);
     }
 
     @Override
