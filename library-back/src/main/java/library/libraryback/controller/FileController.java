@@ -28,8 +28,8 @@ public class FileController {
     }
 
     @GetMapping
-    public HttpEntity<?> getFile(@RequestParam String id, HttpServletResponse response) throws IOException {
-        return fileService.getFile(id,response);
+    public HttpEntity<?> getFile(@RequestParam String id) throws IOException {
+        return fileService.getFile(id);
     }
 
     @GetMapping("/download")

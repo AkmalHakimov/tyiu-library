@@ -37,8 +37,8 @@ public class FileServiceImpl implements FileService{
                         .name(fileId + "_" + file.getOriginalFilename())
                         .prefix(prefix)
                 .build());
-//        FileOutputStream fileOutputStream = new FileOutputStream("Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
-        FileOutputStream fileOutputStream = new FileOutputStream("/root/Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+        FileOutputStream fileOutputStream = new FileOutputStream("Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+//        FileOutputStream fileOutputStream = new FileOutputStream("/root/Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
         FileCopyUtils.copy(file.getInputStream(),fileOutputStream);
             return ResponseEntity.ok(fileId);
     }
@@ -46,8 +46,8 @@ public class FileServiceImpl implements FileService{
     @Override
     public HttpEntity<?> downloadFile(String id) throws MalformedURLException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
-//        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
-        Path filePath = Paths.get(  "/root/Files" + attachment.getPrefix() + "/",attachment.getName());
+        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
+//        Path filePath = Paths.get(  "/root/Files" + attachment.getPrefix() + "/",attachment.getName());
         Resource resource = new UrlResource((filePath.toUri()));
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + attachment.getName() + "\"").body(resource);
     }
@@ -69,14 +69,14 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public HttpEntity<?> getFile(String id, HttpServletResponse response) throws IOException {
+    public HttpEntity<?> getFile(String id) throws IOException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
         String contentType = getContentType(attachment.getName());
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, contentType);
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + attachment.getName());
-//        InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName());
-        try (InputStream inputStream = new FileInputStream("/root/Files" + attachment.getPrefix() + "/" + attachment.getName())) {
+//        InputStream inputStream = new FileInputStream("/root/Files" + attachment.getPrefix() + "/" + attachment.getName())
+            try (InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName());) {
             byte[] pdfContent = org.springframework.util.StreamUtils.copyToByteArray(inputStream);
             return ResponseEntity.ok().headers(headers).body(pdfContent);
         }
