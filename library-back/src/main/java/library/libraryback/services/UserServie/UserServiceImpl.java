@@ -18,6 +18,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public HttpEntity<?> getMe(HttpServletRequest request) {
-        return ResponseEntity.ok(userRepo.findById(jwtService.extractUserFromJwt(request.getHeader("Authorization")).replaceFirst("Bearer ","")));
+        return ResponseEntity.ok(userRepo.findById(jwtService
+                .extractUserFromJwt(request.getHeader("Authorization"))
+                .replaceFirst("Bearer ","")));
     }
 }
