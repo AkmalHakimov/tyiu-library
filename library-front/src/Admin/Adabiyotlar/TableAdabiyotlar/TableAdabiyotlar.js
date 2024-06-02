@@ -214,7 +214,7 @@ function TableAdabiyotlar(props) {
             layout="vertical"
             id="adabiyotForm"
             initialValues={{ categoryId: "Yo'nalishlar" }} // Set initial values here
-            onFinish={(value)=>props.handleSave({value})}
+            onFinish={(value)=>props.handleSave({value})} 
           >
             <Form.Item
               name="categoryId"
@@ -256,7 +256,7 @@ function TableAdabiyotlar(props) {
             >
               <Input placeholder="text" />
             </Form.Item>
-            <Form.Item
+            <Form.Itemx
               rules={[{ required: true, message: "Sana tanlash majburiy" }]}
               required
               label="Sanasi"
@@ -268,7 +268,7 @@ function TableAdabiyotlar(props) {
                   width: "100%",
                 }}
               /> */}
-            </Form.Item>
+            </Form.Itemx>
             <Form.Item label="Upload File" name="attachmentId">
               <div>
               <Upload

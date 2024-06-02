@@ -2,6 +2,7 @@ package library.libraryback.controller;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletResponse;
+import library.libraryback.exception.BookNotFoundException;
 import library.libraryback.services.FileService.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -28,13 +29,13 @@ public class FileController {
     }
 
     @GetMapping
-    public HttpEntity<?> getFile(@RequestParam String id) throws IOException {
+    public HttpEntity<?> getFile(@RequestParam String id) throws IOException, BookNotFoundException {
         return fileService.getFile(id);
     }
 
     @GetMapping("/download")
 //    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
-    public HttpEntity<?> downloadFile(@RequestParam(defaultValue = "") String id) throws MalformedURLException, UnsupportedEncodingException {
+    public HttpEntity<?> downloadFile(@RequestParam(defaultValue = "") String id) throws MalformedURLException, UnsupportedEncodingException, BookNotFoundException {
         return  fileService.downloadFile(id);
     }
 

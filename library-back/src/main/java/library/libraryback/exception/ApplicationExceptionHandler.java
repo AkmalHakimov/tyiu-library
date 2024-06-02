@@ -15,19 +15,23 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 @ControllerAdvice
 public class ApplicationExceptionHandler {
 
+    @ExceptionHandler(BookNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public HttpEntity<?> BookNotFoundException(BookNotFoundException e) {
+        e.printStackTrace();
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND,e.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+    }
+
 //    @ExceptionHandler(Exception.class)
 //    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    public HttpEntity<?> InternalServerError(Exception e) {
+//    public HttpEntity<?> genericException(Exception e) {
 //        e.printStackTrace();
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
+//        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage());
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
 //    }
 
-    @ExceptionHandler(NoResourceFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public HttpEntity<?> InternalServerError(NoResourceFoundException e) {
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-    }
+
 
     @ExceptionHandler(InternalAuthenticationServiceException.class)
     public ResponseEntity<?> securityError(InternalAuthenticationServiceException e) {

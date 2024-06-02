@@ -66,7 +66,7 @@ public class BookServiceImpl implements BookService {
         Book dbBook = bookRepo.findById(bookId).orElseThrow();
         QrCode dbQrCode = qrCodeRepo.findById(dbBook.getQrCode().getId()).orElseThrow();
 //        String content = "http://localhost:8080/api/file/download?id=" + attachment.getId();
-        String content = "http://5.35.87.141:8080/api/file/download?id=" + attachment.getId();
+        String content = "http://45.147.178.231:8080/api/file/download?id=" + attachment.getId();
         Book save = bookRepo.save(Book.builder()
                 .id(bookId)
                 .book_date(reqBook.getBookDate())

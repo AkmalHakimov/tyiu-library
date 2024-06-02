@@ -60,7 +60,7 @@ public class QrCodeServiceImpl implements QrCodeService {
         String qrCodePath = "/root/Files/qrCodes/images_temp/";
         String qrCodeName = qrCodePath + qrCodeId + "_QRCODE.png";
 //        String qrCodeContent = "http://localhost:8080/api/file/download?id=" + pdfId;
-        String qrCodeContent = "http://5.35.87.141:8080/api/file/download?id=" + pdfId;
+        String qrCodeContent = "http://45.147.178.231:8080/api/file/download?id=" + pdfId;
         qrCodeRepo.save(QrCode.builder()
                 .id(qrCodeId.toString())
                 .name(qrCodeName)

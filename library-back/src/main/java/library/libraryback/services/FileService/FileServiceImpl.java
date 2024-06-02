@@ -3,10 +3,12 @@ package library.libraryback.services.FileService;
 import jakarta.servlet.http.HttpServletResponse;
 import library.libraryback.entity.Attachment;
 import library.libraryback.entity.QrCode;
+import library.libraryback.exception.BookNotFoundException;
 import library.libraryback.repository.FileRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.expression.ExpressionException;
 import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
@@ -37,17 +39,17 @@ public class FileServiceImpl implements FileService{
                         .name(fileId + "_" + file.getOriginalFilename())
                         .prefix(prefix)
                 .build());
-        FileOutputStream fileOutputStream = new FileOutputStream("Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
-//        FileOutputStream fileOutputStream = new FileOutputStream("/root/Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+//        FileOutputStream fileOutputStream = new FileOutputStream("Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
+        FileOutputStream fileOutputStream = new FileOutputStream("/root/Files" + prefix + "/" + fileId + "_" + file.getOriginalFilename());
         FileCopyUtils.copy(file.getInputStream(),fileOutputStream);
             return ResponseEntity.ok(fileId);
     }
 
     @Override
-    public HttpEntity<?> downloadFile(String id) throws MalformedURLException {
+    public HttpEntity<?> downloadFile(String id) throws MalformedURLException, BookNotFoundException {
         Attachment attachment = fileRepo.findById(id).orElseThrow();
-        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
-//        Path filePath = Paths.get(  "/root/Files" + attachment.getPrefix() + "/",attachment.getName());
+//        Path filePath = Paths.get(  "Files" + attachment.getPrefix() + "/",attachment.getName());
+        Path filePath = Paths.get(  "/root/Files" + attachment.getPrefix() + "/",attachment.getName());
         Resource resource = new UrlResource((filePath.toUri()));
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\"" + attachment.getName() + "\"").body(resource);
     }
@@ -69,14 +71,14 @@ public class FileServiceImpl implements FileService{
     }
 
     @Override
-    public HttpEntity<?> getFile(String id) throws IOException {
-        Attachment attachment = fileRepo.findById(id).orElseThrow();
+    public HttpEntity<?> getFile(String id) throws IOException, BookNotFoundException {
+        Attachment attachment = fileRepo.findById(id).orElseThrow(()->new RuntimeException("kaorchi ishladi"));
         String contentType = getContentType(attachment.getName());
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, contentType);
         headers.add(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=" + attachment.getName());
-//        InputStream inputStream = new FileInputStream("/root/Files" + attachment.getPrefix() + "/" + attachment.getName())
-            try (InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName());) {
+//        InputStream inputStream = new FileInputStream("Files" + attachment.getPrefix() + "/" + attachment.getName())
+            try (InputStream inputStream = new FileInputStream("/root/Files" + attachment.getPrefix() + "/" + attachment.getName())) {
             byte[] pdfContent = org.springframework.util.StreamUtils.copyToByteArray(inputStream);
             return ResponseEntity.ok().headers(headers).body(pdfContent);
         }
