@@ -1,6 +1,6 @@
 # tyiu-library
 
-A full-stack library management system built for TYIU (Tyumen Industrial University). The backend is written in Java and the frontend in JavaScript with SCSS, split into two separate directories that work together as a single application.
+A full-stack library management system built for TYIU (Turkistan New Innovations university). The backend is written in Java and the frontend in JavaScript with SCSS, split into two separate directories that work together as a single application.
 
 ---
 
